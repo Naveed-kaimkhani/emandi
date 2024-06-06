@@ -119,7 +119,7 @@ class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<Locale, String> localeNames = {
-      const Locale('en'): 'English 🇺k',
+      const Locale('en'): 'English 🇺🇸',
       const Locale('ur'): 'Urdu 🇵🇰',
     };
 
@@ -189,7 +189,7 @@ class Onboarding extends StatelessWidget {
                     widht: 250.w,
                     text: AppLocalizations.of(context)!.getStarted,
                     func: () {
-                      Navigator.pushNamed(context, RoutesName.login);
+                      Navigator.pushNamed(context, RoutesName.billing_screen);
                     },
                     color: Styling.primaryColor,
                   ),

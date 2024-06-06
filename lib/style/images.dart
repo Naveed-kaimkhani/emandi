@@ -14,4 +14,5 @@ class Images {
   static const String billing = 'assets/billing.png';
   static const String connection = 'assets/connection.png';
 
+  static const String billing_scren = 'assets/billing_screen.png';
 }

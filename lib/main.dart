@@ -3,6 +3,7 @@ import 'package:e_mandi/data/firebase/firebase_auth_repository.dart';
 import 'package:e_mandi/domain/repositories/auth_repository.dart';
 import 'package:e_mandi/firebase_options.dart';
 import 'package:e_mandi/presentation/auth/login_screen.dart';
+import 'package:e_mandi/presentation/billing/billing_screen.dart';
 import 'package:e_mandi/presentation/category/category_screen.dart';
 import 'package:e_mandi/presentation/initial/initial_screen.dart';
 import 'package:e_mandi/utils/routes/routes.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: InitialScreen(),
+                home: Onboarding(),
                 onGenerateRoute: Routes.onGenerateRoute,
               );
             },
