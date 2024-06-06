@@ -1,0 +1,30 @@
+{  
+    "getStarted":"شروع کرنے کے",
+    "title":"آسن منڈی",
+    "login":"لاگ ان کریں",
+    "signup":"سائن اپ",
+    "email":"ای میل یا صارف نام درج کریں۔",
+    "password":"پاس ورڈ",
+    "iNITIAL":"ابتدائی فہرست",
+    "bILLING":"بلنگ",
+    "lEDGES":"کھاتہ",
+    "cONNECTIONS":"کنکشنز",
+    "createFromScratch":"شروع سے بنائیں",
+    "createFromInitialList":"ابتدائی فہرست سے بنائیں",
+    "name":"نام",
+    "enterUserName":"صارف نام درج کریں",
+    "selectItemTypeName":"آئٹم کی قسم اور نام منتخب کریں۔",
+    "selectItem":"آئٹم کو منتخب کریں",
+    "selectContainer":"کنٹینر منتخب کریں",
+    "itemCount":"اشیاء کی شرح",
+    "itemRates":"آئٹم قیمت",
+    "quantityCheck":"مقدار کی جانچ پڑتال",
+    "porterages":"پورٹریز",
+    "rent":"کرایہ",
+    "submit":"جمع کرائیں",
+    "addAnotherItem":"ایک اور شے شامل کریں",
+    "gENERATEBILL":"بل بنائیں"
+
+
+
+}

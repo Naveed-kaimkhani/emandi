@@ -1,0 +1,28 @@
+{   
+    "getStarted":"Get Started",
+    "title":"Asan Mandi",
+    "login":"login",
+    "signup":"signup",
+    "email":"Enter email or username",
+    "password":"password",
+    "iNITIAL":"INITIAL",
+    "bILLING":"BILLING",
+    "lEDGES":"LEDGES",
+    "cONNECTIONS":"CONNECTIONS",
+    "createFromScratch":"Create from scratch",
+    "createFromInitialList":"Create from initial list",
+    "name":"Name",
+    "enterUserName":"Enter User name",
+    "selectItemTypeName":"Select item type & name",
+    "selectItem":"Select item",
+    "selectContainer":"Select container", 
+    "itemCount":"Item count",
+    "itemRates":"Item rates",
+    "quantityCheck":"Quantity check",
+    "porterages":"porterages",
+    "rent":"Rent",
+    "submit":"Submit",
+    "addAnotherItem":"Add another item",
+    "gENERATEBILL":"GENERATE BILL"
+
+}

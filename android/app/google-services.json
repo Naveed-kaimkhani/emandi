@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "954722683748",
+    "project_id": "emandi-bb525",
+    "storage_bucket": "emandi-bb525.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954722683748:android:23c1e7a8a0b4250dfac871",
+        "android_client_info": {
+          "package_name": "com.example.e_mandi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954722683748-jchkke58eij9h9b31lij16k6b55p4fvl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_mandi",
+            "certificate_hash": "6588a2e2ba80f549d86665e0ad83be60d61a6aea"
+          }
+        },
+        {
+          "client_id": "954722683748-6brmu8k96hsv6qrflac17ael51gva3dq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCttbyRNbr6KKpo3NxV0x-uunC0K0nmtZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954722683748-6brmu8k96hsv6qrflac17ael51gva3dq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "954722683748-tl6uros1fmfiprlur5ktn68a7qsv32us.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eMandi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
