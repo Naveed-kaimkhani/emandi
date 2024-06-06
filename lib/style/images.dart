@@ -3,17 +3,15 @@
 class Images {
   Images._();
   // static const String home = 'assets/home.png';
-  static const String logo = 'assets/logo.svg';
-  
+  static const String google_icon = 'assets/google_icon.png';
+
   static const String logo_en = 'assets/logo_en.png';
-   
   static const String logo_png = 'assets/logo_png.png';
-  
-  static const String en_logo = 'assets/en_logo.svg';
-  
+
   static const String mob_icon = 'assets/mob_icon.svg';
-  
-  static const String initial_svg = 'assets/initial_svg.svg';
   static const String initial = 'assets/initial.png';
+  static const String ledger = 'assets/ledger.png';
+  static const String billing = 'assets/billing.png';
+  static const String connection = 'assets/connection.png';
 
 }

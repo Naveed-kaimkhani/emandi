@@ -3,30 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class FruitDropdown extends StatefulWidget {
+class ContainerDropDown extends StatefulWidget {
   final FocusNode currentNode;
   final FocusNode nextNode;
 
-  const FruitDropdown({
+  const ContainerDropDown({
     Key? key,
     required this.currentNode,
     required this.nextNode,
   }) : super(key: key);
 
   @override
-  _FruitDropdownState createState() => _FruitDropdownState();
+  _ContainerDropDownState createState() => _ContainerDropDownState();
 }
 
-class _FruitDropdownState extends State<FruitDropdown> {
-  final List<String> fruits = [
-    'Apple',
-    'Banana',
-    'Cherry',
-    'Date',
-    'Grape',
-    'Mango'
+class _ContainerDropDownState extends State<ContainerDropDown> {
+  final List<String> containers = [
+    'Shopper',
+    'Patti',
   ];
-  String? selectedFruit;
+  String? selectedContainer;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +33,7 @@ class _FruitDropdownState extends State<FruitDropdown> {
           color: Styling.textfieldsColor,
           borderRadius: BorderRadius.circular(35.r),
           boxShadow: [
-            BoxShadow(
+            const BoxShadow(
               color: Colors.black26,
               blurRadius: 5.0,
               offset: Offset(0, 3),
@@ -45,30 +41,30 @@ class _FruitDropdownState extends State<FruitDropdown> {
           ],
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
           child: DropdownButtonFormField<String>(
             focusNode: widget.currentNode,
             decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.selectItemTypeName,
+              hintText: AppLocalizations.of(context)!.selectContainer,
               border: InputBorder.none,
             ),
-            value: selectedFruit,
-            items: fruits.map((String fruit) {
+            value: selectedContainer,
+            items: containers.map((String container) {
               return DropdownMenuItem<String>(
-                value: fruit,
+                value: container,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.r),
-                    color: selectedFruit == fruit
+                    color: selectedContainer == container
                         ? Styling.primaryColor.withOpacity(0.2)
                         : Colors.transparent,
                   ),
                   padding:
                       EdgeInsets.symmetric(horizontal: 10.w, vertical: 1.h),
                   child: Text(
-                    fruit,
+                    container,
                     style: TextStyle(
-                      color: selectedFruit == fruit
+                      color: selectedContainer == container
                           ? Styling.primaryColor
                           : Colors.black,
                     ),
@@ -78,14 +74,14 @@ class _FruitDropdownState extends State<FruitDropdown> {
             }).toList(),
             onChanged: (newValue) {
               setState(() {
-                selectedFruit = newValue;
+                selectedContainer = newValue;
               });
               // Move to the next focus node
               FocusScope.of(context).requestFocus(widget.nextNode);
             },
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Please select a fruit";
+                return "Please select a container";
               }
               return null;
             },

@@ -39,25 +39,35 @@ class CategoryContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 80.w, // Adjust the size as needed
-              height: 80.w, // Keeping width and height the same to make it circular
-              decoration: BoxDecoration(
+              width: 100.w, // Adjust the size as needed
+              height: 100
+                  .h, // Keeping width and height the same to make it circular
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 5.0,
+                    offset: Offset(0, 3),
+                  ),
+                ],
               ),
               child: Center(
-                child: SvgPicture.asset(
+                child: Image.asset(
                   imagePath,
-                  width: 50.w, // Adjust the size of the image as needed
-                  height: 50.w, // Keeping width and height the same for aspect ratio
+                  width: 80.w, // Adjust the size of the image as needed
+                  height: 80
+                      .h, // Keeping width and height the same for aspect ratio
                 ),
               ),
             ),
-            SizedBox(height: 10.h), // Add some spacing between the image and text
+            SizedBox(
+                height: 10.h), // Add some spacing between the image and text
             Text(
               text,
               style: TextStyle(
-                color: Colors.black, // Adjust the color as needed
+                color: Colors.white, // Adjust the color as needed
                 fontSize: 14.sp, // Adjust the font size as needed
               ),
               textAlign: TextAlign.center,

@@ -1,6 +1,8 @@
 // import 'dart:typed_data';
 import 'dart:typed_data';
+import 'package:e_mandi/presentation/initial/container_dropdown.dart';
 import 'package:e_mandi/presentation/initial/dropdown.dart';
+import 'package:e_mandi/presentation/initial/item_count.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
 import 'package:e_mandi/presentation/widgets/input_field.dart';
 import 'package:e_mandi/utils/utils.dart';
@@ -13,18 +15,18 @@ import '../../style/images.dart';
 import '../../style/styling.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-class UserSignUp extends StatefulWidget {
-  const UserSignUp({Key? key}) : super(key: key);
+
+class InitialScreen extends StatefulWidget {
+  const InitialScreen({Key? key}) : super(key: key);
 
   @override
-  State<UserSignUp> createState() => _UserSignUpState();
+  State<InitialScreen> createState() => _InitialScreenState();
 }
 
-class _UserSignUpState extends State<UserSignUp> {
+class _InitialScreenState extends State<InitialScreen> {
   // final FirebaseUserRepository _firebaseUserRepository =
   //     FirebaseUserRepository();          // replace this thing with getx
   final _formKey = GlobalKey<FormState>();
-
 
   FocusNode nameFocusNode = FocusNode();
   FocusNode phoneFocusNode = FocusNode();
@@ -42,7 +44,6 @@ class _UserSignUpState extends State<UserSignUp> {
   //   });
   // }
 
-
   @override
   void dispose() {
     _nameController.dispose();
@@ -55,7 +56,7 @@ class _UserSignUpState extends State<UserSignUp> {
 
   @override
   void initState() {
-    utils.checkConnectivity(context);
+    // utils.checkConnectivity(context);
     super.initState();
   }
 
@@ -67,7 +68,21 @@ class _UserSignUpState extends State<UserSignUp> {
       },
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Styling.primaryColor,
+            centerTitle: true,
+            title: Text(
+              AppLocalizations.of(context)!.iNITIAL,
+              style: const TextStyle(color: Colors.white),
+            ),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ),
+          backgroundColor: Styling.backgroundColor,
           body: Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -75,7 +90,7 @@ class _UserSignUpState extends State<UserSignUp> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 20.h,
+                    height: 40.h,
                   ),
 
                   InputField(
@@ -93,27 +108,45 @@ class _UserSignUpState extends State<UserSignUp> {
                       }
                     },
                   ),
-                  FruitDropdown(currentNode: fruitFocusNode,nextNode: fruitFocusNode,),
-                  
+                  FruitDropdown(
+                    currentNode: fruitFocusNode,
+                    nextNode: fruitFocusNode,
+                  ),
+                  ContainerDropDown(
+                    currentNode: fruitFocusNode,
+                    nextNode: fruitFocusNode,
+                  ),
+                  const ItemCountDropDown(),
+
+                  InputField(
+                    hint_text: AppLocalizations.of(context)!.rent,
+                    currentNode: nameFocusNode,
+                    focusNode: nameFocusNode,
+                    nextNode: fruitFocusNode,
+                    controller: _nameController,
+                    obsecureText: false,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Enter Rent";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
                   // k,
                   SizedBox(
-                    height: 18.h,
+                    height: 30.h,
                   ),
+                  AuthButton(
+                      height: 56.h,
+                      widht: 280.w,
+                      text: AppLocalizations.of(context)!.submit,
+                      func: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
 
-                  // isLoadingNow
-                  //     ? const CircleProgress()
-                  //     :
-                       AuthButton(
-                        
-                          height: 56.h,
-                          widht: 300.w,
-                          text: "Signup",
-                          func: () {
-                            FocusManager.instance.primaryFocus?.unfocus();
-
-                            // _submitForm();
-                          },
-                          color: Styling.primaryColor),
+                        // _submitForm();
+                      },
+                      color: Styling.primaryColor),
                 ],
               ),
             ),
@@ -122,5 +155,4 @@ class _UserSignUpState extends State<UserSignUp> {
       ),
     );
   }
-
 }

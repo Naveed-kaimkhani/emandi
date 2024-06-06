@@ -53,7 +53,7 @@ class InputField extends StatelessWidget {
             utils.fieldFocusChange(context, currentNode!, nextNode!),
         onChanged: onChanged,
         decoration: InputDecoration(
-          fillColor: Styling.primaryColor,
+          fillColor: Styling.textfieldsColor,
           filled: true,
           contentPadding: const EdgeInsets.all(12),
           focusedBorder: OutlineInputBorder(

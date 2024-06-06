@@ -1,4 +1,5 @@
 import 'package:e_mandi/presentation/auth/login_screen.dart';
+import 'package:e_mandi/presentation/initial/initial_screen.dart';
 import 'package:e_mandi/utils/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,10 @@ class Routes {
     switch (settings.name) {
       case RoutesName.login:
         return _buildRoute(const LoginScreen(), settings);
-        default:
+
+      case RoutesName.initial_screen:
+        return _buildRoute(const InitialScreen(), settings);
+      default:
         return _buildRoute(
             const Scaffold(
               body: Center(

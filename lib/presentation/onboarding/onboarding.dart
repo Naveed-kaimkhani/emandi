@@ -119,7 +119,7 @@ class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<Locale, String> localeNames = {
-      const Locale('en'): 'English 🇺🇲',
+      const Locale('en'): 'English 🇺k',
       const Locale('ur'): 'Urdu 🇵🇰',
     };
 
@@ -128,7 +128,9 @@ class Onboarding extends StatelessWidget {
         final Locale currentLocale = state.locale;
 
         // Determine which image to display based on the selected locale
-        final String logoImage = currentLocale == const Locale('en') ? Images.logo_en : Images.logo_png;
+        final String logoImage = currentLocale == const Locale('en')
+            ? Images.logo_en
+            : Images.logo_png;
 
         return SafeArea(
           child: Scaffold(
@@ -137,7 +139,7 @@ class Onboarding extends StatelessWidget {
               centerTitle: true,
               backgroundColor: Styling.primaryColor,
               title: Text(
-                AppLocalizations.of(context)!.login,
+                AppLocalizations.of(context)!.title,
                 style: const TextStyle(color: Colors.white),
               ),
               actions: [
@@ -153,13 +155,16 @@ class Onboarding extends StatelessWidget {
                       dropdownColor: Styling.backgroundColor,
                       onChanged: (Locale? locale) {
                         if (locale != null) {
-                          context.read<LocalizationBloc>().add(SetLocale(locale));
+                          context
+                              .read<LocalizationBloc>()
+                              .add(SetLocale(locale));
                         }
                       },
                       items: AppLocalizations.supportedLocales.map((locale) {
                         return DropdownMenuItem(
                           value: locale,
-                          child: Text(localeNames[locale] ?? locale.languageCode),
+                          child:
+                              Text(localeNames[locale] ?? locale.languageCode),
                         );
                       }).toList(),
                     ),

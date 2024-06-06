@@ -3,28 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class FruitDropdown extends StatefulWidget {
-  final FocusNode currentNode;
-  final FocusNode nextNode;
+class ItemCountDropDown extends StatefulWidget {
+  // final FocusNode currentNode;
+  // final FocusNode nextNode;
 
-  const FruitDropdown({
+  const ItemCountDropDown({
     Key? key,
-    required this.currentNode,
-    required this.nextNode,
+    // required this.currentNode,
+    // required this.nextNode,
   }) : super(key: key);
 
   @override
-  _FruitDropdownState createState() => _FruitDropdownState();
+  _ItemCountDropDownState createState() => _ItemCountDropDownState();
 }
 
-class _FruitDropdownState extends State<FruitDropdown> {
+class _ItemCountDropDownState extends State<ItemCountDropDown> {
   final List<String> fruits = [
-    'Apple',
-    'Banana',
-    'Cherry',
-    'Date',
-    'Grape',
-    'Mango'
+    '5',
+    '10',
   ];
   String? selectedFruit;
 
@@ -36,7 +32,7 @@ class _FruitDropdownState extends State<FruitDropdown> {
         decoration: BoxDecoration(
           color: Styling.textfieldsColor,
           borderRadius: BorderRadius.circular(35.r),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black26,
               blurRadius: 5.0,
@@ -45,11 +41,11 @@ class _FruitDropdownState extends State<FruitDropdown> {
           ],
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
           child: DropdownButtonFormField<String>(
-            focusNode: widget.currentNode,
+            // focusNode: widget.currentNode,
             decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.selectItemTypeName,
+              hintText: AppLocalizations.of(context)!.itemCount,
               border: InputBorder.none,
             ),
             value: selectedFruit,
@@ -81,7 +77,7 @@ class _FruitDropdownState extends State<FruitDropdown> {
                 selectedFruit = newValue;
               });
               // Move to the next focus node
-              FocusScope.of(context).requestFocus(widget.nextNode);
+              // FocusScope.of(context).requestFocus(widget.nextNode);
             },
             validator: (value) {
               if (value == null || value.isEmpty) {

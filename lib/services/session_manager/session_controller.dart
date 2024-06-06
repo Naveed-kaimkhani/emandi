@@ -37,8 +37,8 @@ class SessionController {
   /// Saves user data into the local storage.
   ///
   /// Takes a [user] object as input and saves it into the local storage.
-  Future<void> saveUserInPreference(dynamic user) async {
-    sharedPreferenceClass.setValue('token', jsonEncode(user));
+  Future<void> saveUserInPreference(UserModel user) async {
+    sharedPreferenceClass.setValue('token', jsonEncode(user.toMap(user)));
     // Storing value to check login
     sharedPreferenceClass.setValue('isLogin', 'true');
   }

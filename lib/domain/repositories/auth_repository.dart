@@ -1,8 +1,9 @@
 
-import 'package:dartz/dartz.dart';
 import 'package:e_mandi/domain/entities/user.dart';
-import 'package:e_mandi/domain/failures/login_failure.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthRepository {
   Future<UserModel> loginWithGoogle();
+  
+  Future<User?> loginWithEmailPass(String email, String password, context);
 }
