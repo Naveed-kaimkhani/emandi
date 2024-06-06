@@ -137,8 +137,8 @@ class Onboarding extends StatelessWidget {
               centerTitle: true,
               backgroundColor: Styling.primaryColor,
               title: Text(
-                AppLocalizations.of(context)!.title,
-                style: TextStyle(color: Colors.white),
+                AppLocalizations.of(context)!.login,
+                style: const TextStyle(color: Colors.white),
               ),
               actions: [
                 Padding(
