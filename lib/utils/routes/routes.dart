@@ -1,6 +1,12 @@
 import 'package:e_mandi/presentation/auth/login_screen.dart';
 import 'package:e_mandi/presentation/billing/billing_screen.dart';
+import 'package:e_mandi/presentation/billing/create_bill.dart';
+import 'package:e_mandi/presentation/billing/create_bill_from_initial_list.dart';
+import 'package:e_mandi/presentation/category/category_screen.dart';
+import 'package:e_mandi/presentation/initial/initial_list.dart';
 import 'package:e_mandi/presentation/initial/initial_screen.dart';
+import 'package:e_mandi/presentation/ledges/edit_ledges.dart';
+import 'package:e_mandi/presentation/ledges/view_ledges.dart';
 import 'package:e_mandi/utils/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 
@@ -10,23 +16,42 @@ class Routes {
       case RoutesName.login:
         return _buildRoute(const LoginScreen(), settings);
 
-      case RoutesName.initial_screen:
+      case RoutesName.initialScreen:
         return _buildRoute(const InitialScreen(), settings);
-        
-      case RoutesName.billing_screen:
+
+      case RoutesName.billingScreen:
         return _buildRoute(const BillingScreen(), settings);
+
+      case RoutesName.categoryScreen:
+        return _buildRoute(const CategoryScreen(), settings);
+
+      case RoutesName.initialList:
+        return _buildRoute(const InitialList(), settings);
+
+      case RoutesName.createBill:
+        return _buildRoute(const CreateBillFromScratch(), settings);
+
+      case RoutesName.createBillFromInitialList:
+        return _buildRoute(const CreateBillFromInitialList(), settings);
+
+      case RoutesName.viewLedges:
+        return _buildRoute(const ViewLedges(), settings);
+      case RoutesName.editLedges:
+        return _buildRoute(const EditLedges(), settings);
+
       default:
         return _buildRoute(
-            const Scaffold(
-              body: Center(
-                child: Text("NO Route Found"),
-              ),
+          const Scaffold(
+            body: Center(
+              child: Text("NO Route Found"),
             ),
-            settings);
+          ),
+          settings,
+        );
     }
   }
 
-  static _buildRoute(Widget widget, RouteSettings settings) {
+  static MaterialPageRoute _buildRoute(Widget widget, RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => widget, settings: settings);
   }
 }

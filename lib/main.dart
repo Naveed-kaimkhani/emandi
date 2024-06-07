@@ -5,7 +5,9 @@ import 'package:e_mandi/firebase_options.dart';
 import 'package:e_mandi/presentation/auth/login_screen.dart';
 import 'package:e_mandi/presentation/billing/billing_screen.dart';
 import 'package:e_mandi/presentation/category/category_screen.dart';
+import 'package:e_mandi/presentation/initial/initial_list.dart';
 import 'package:e_mandi/presentation/initial/initial_screen.dart';
+import 'package:e_mandi/presentation/ledges/ledges_screen.dart';
 import 'package:e_mandi/utils/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -62,7 +64,7 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: Onboarding(),
+                home:Onboarding(),
                 onGenerateRoute: Routes.onGenerateRoute,
               );
             },

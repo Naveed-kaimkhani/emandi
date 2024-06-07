@@ -1,15 +1,8 @@
-import 'dart:typed_data';
-import 'package:e_mandi/presentation/initial/container_dropdown.dart';
-import 'package:e_mandi/presentation/initial/dropdown.dart';
-import 'package:e_mandi/presentation/initial/item_count.dart';
-import 'package:e_mandi/presentation/widgets/auth_button.dart';
-import 'package:e_mandi/presentation/widgets/input_field.dart';
-import 'package:e_mandi/utils/utils.dart';
-import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:e_mandi/presentation/widgets/custom_container.dart';
+import 'package:e_mandi/utils/routes/routes.dart';
+import 'package:e_mandi/utils/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import '../../style/images.dart';
 import '../../style/styling.dart';
 
@@ -86,78 +79,25 @@ class _BillingScreenState extends State<BillingScreen> {
                     text: AppLocalizations.of(context)!
                         .createFromScratch, // Replace with your text
                     containerColor: Styling.primaryColor,
-                    imageContainerColor: Colors.white,
+                    imageContainerColor: Styling.textfieldsColor,
                     textColor: Colors.white,
+                    navigateTo: RoutesName.createBill,
                   ),
                   SizedBox(height: 20.h),
                   CustomContainer(
                     imagePath: Images.initial, // Replace with your image path
                     text: AppLocalizations.of(context)!
                         .createFromInitialList, // Replace with your text
-                    containerColor: Color.fromARGB(255, 219, 218, 218),
+                    containerColor: Styling.textfieldsColor,
                     imageContainerColor: Styling.primaryColor,
                     textColor: Styling.primaryColor,
+                    navigateTo: RoutesName.createBillFromInitialList,
                   ),
                 ],
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class CustomContainer extends StatelessWidget {
-  final String imagePath;
-  final String text;
-  final Color containerColor;
-  final Color imageContainerColor;
-  final Color textColor;
-
-  const CustomContainer({
-    Key? key,
-    required this.imagePath,
-    required this.text,
-    required this.containerColor,
-    required this.imageContainerColor,
-    required this.textColor,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 320.w,
-      height: 130.h,
-      decoration: BoxDecoration(
-        color: containerColor,
-        borderRadius: BorderRadius.circular(26.r),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 80.w,
-            height: 80.h,
-            decoration: BoxDecoration(
-              color: imageContainerColor,
-              borderRadius: BorderRadius.circular(25.r),
-            ),
-            child: Center(
-              child: Image.asset(imagePath, width: 80.w, height: 80.h),
-            ),
-          ),
-          // Image.asset(imagePath, width: 80.w, height: 80.h),
-          SizedBox(width: 10.w),
-          Text(
-            text,
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 20.sp,
-            ),
-          ),
-        ],
       ),
     );
   }

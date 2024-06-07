@@ -24,5 +24,13 @@
     "submit":"Submit",
     "addAnotherItem":"Add another item",
     "gENERATEBILL":"GENERATE BILL",
-    "signupWith":"Signup With"
+    "signupWith":"Signup With",
+    "viewLedges":"View Ledges",
+    "editLedges":"Edit Ledges",
+    "itemName":"item name",
+    "itemContainer":"item container",
+    "initialItemList":"Initial item list",
+    "viewList":"View list",
+    "addAnotherItem":"Add another item"
+    
 }

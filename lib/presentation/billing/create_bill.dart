@@ -1,3 +1,4 @@
+
 import 'package:e_mandi/presentation/initial/container_dropdown.dart';
 import 'package:e_mandi/presentation/initial/dropdown.dart';
 import 'package:e_mandi/presentation/initial/item_count.dart';
@@ -10,16 +11,14 @@ import '../../style/styling.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class InitialScreen extends StatefulWidget {
-  const InitialScreen({Key? key}) : super(key: key);
+class CreateBillFromScratch extends StatefulWidget {
+  const CreateBillFromScratch({Key? key}) : super(key: key);
 
   @override
-  State<InitialScreen> createState() => _InitialScreenState();
+  State<CreateBillFromScratch> createState() => _CreateBillFromScratchState();
 }
 
-class _InitialScreenState extends State<InitialScreen> {
-  // final FirebaseUserRepository _firebaseUserRepository =
-  //     FirebaseUserRepository();          // replace this thing with getx
+class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
   final _formKey = GlobalKey<FormState>();
 
   FocusNode nameFocusNode = FocusNode();
@@ -32,11 +31,6 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget k = SizedBox(
     height: 16.h,
   );
-  // void isLoading(bool value) {
-  //   setState(() {
-  //     isLoadingNow = value;
-  //   });
-  // }
 
   @override
   void dispose() {
@@ -66,7 +60,7 @@ class _InitialScreenState extends State<InitialScreen> {
             backgroundColor: Styling.primaryColor,
             centerTitle: true,
             title: Text(
-              AppLocalizations.of(context)!.iNITIAL,
+              AppLocalizations.of(context)!.createFromScratch,
               style: const TextStyle(color: Colors.white),
             ),
             leading: IconButton(
@@ -102,16 +96,64 @@ class _InitialScreenState extends State<InitialScreen> {
                       }
                     },
                   ),
-                  FruitDropdown(
-                    currentNode: fruitFocusNode,
+                  InputField(
+                    hint_text: AppLocalizations.of(context)!.selectItemTypeName,
+                    currentNode: nameFocusNode,
+                    focusNode: nameFocusNode,
                     nextNode: fruitFocusNode,
+                    controller: _nameController,
+                    obsecureText: false,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Enter name";
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
+                  
                   ContainerDropDown(
                     currentNode: fruitFocusNode,
                     nextNode: fruitFocusNode,
                   ),
+                  
                   const ItemCountDropDown(),
+                  FruitDropdown(
+                    currentNode: fruitFocusNode,
+                    nextNode: fruitFocusNode,
+                  ),
 
+                  InputField(
+                    hint_text: AppLocalizations.of(context)!.itemRates,
+                    currentNode: nameFocusNode,
+                    focusNode: nameFocusNode,
+                    nextNode: fruitFocusNode,
+                    controller: _nameController,
+                    obsecureText: false,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Enter Rate";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                  
+                  InputField(
+                    hint_text: "percentage",
+                    currentNode: nameFocusNode,
+                    focusNode: nameFocusNode,
+                    nextNode: fruitFocusNode,
+                    controller: _nameController,
+                    obsecureText: false,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Enter Percentage";
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
                   InputField(
                     hint_text: AppLocalizations.of(context)!.rent,
                     currentNode: nameFocusNode,
@@ -132,36 +174,26 @@ class _InitialScreenState extends State<InitialScreen> {
                     height: 30.h,
                   ),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      AuthButton(
-                          height: 56.h,
-                          widht: 110.w,
-                          text: AppLocalizations.of(context)!.submit,
-                          func: () {
-                            FocusManager.instance.primaryFocus?.unfocus();
+                  AuthButton(
+                      height: 56.h,
+                      widht: 280.w,
+                      text: AppLocalizations.of(context)!.gENERATEBILL,
+                      func: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
 
-                            // _submitForm();
-                          },
-                          color: Styling.primaryColor),
+                        // _submitForm();
+                      },
+                      color: Styling.primaryColor),
 
-                      // SizedBox(
-                      //   height: 10.h,
-                      // ),
-                      AuthButton(
-                          height: 56.h,
-                          widht: 200.w,
-                          // text: AppLocalizations.of(context)!.addAnotherItem,
-                          text: "View List",
-                          func: () {
-                            Navigator.pushNamed(
-                                context, RoutesName.initialList);
-                            // _submitForm();
-                          },
-                          color: Styling.primaryColor),
-                    ],
-                  ),
+                  AuthButton(
+                      height: 56.h,
+                      widht: 280.w,
+                      text: AppLocalizations.of(context)!.submit,
+                      func: () {
+                        // Navigator.pushNamed(context, RoutesName.initial_list);
+                        // _submitForm();
+                      },
+                      color: Styling.primaryColor),
                 ],
               ),
             ),

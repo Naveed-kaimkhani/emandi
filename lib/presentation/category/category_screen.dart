@@ -48,14 +48,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 CategoryContainer(
                   imagePath: Images.initial,
                   text: AppLocalizations.of(context)!.iNITIAL,
-                  onTap: (){
-                    Navigator.pushNamed(context, RoutesName.initial_screen);
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutesName.initialScreen);
                   },
                 ),
                 CategoryContainer(
                   imagePath: Images.billing,
                   text: AppLocalizations.of(context)!.bILLING,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutesName.billingScreen);
+                  },
                 ),
               ],
             ),
@@ -68,32 +70,20 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 CategoryContainer(
                   imagePath: Images.ledger,
                   text: AppLocalizations.of(context)!.lEDGES,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutesName.billingScreen);
+                  },
                 ),
                 CategoryContainer(
                   imagePath: Images.connection,
                   text: AppLocalizations.of(context)!.cONNECTIONS,
-                  onTap: () {},
+                  onTap: () {
+                    // Navigator.pushNamed(context, RoutesName.billing_screen);
+                  },
                 ),
               ],
             )
           ],
         ));
   }
-
-  // void _CategoryScreen() {
-  //   // isLoading(true);
-  //   _firebaseRepository
-  //       .CategoryScreen(_emailController.text, _passwordController.text, context)
-  //       // .CategoryScreen("kkk@gmail.com", "111111", context)
-  //       .then((User? user) async {
-  //     if (user != null) {
-  //       //  final   currentLocation = await Geolocator.getCurrentPosition();
-  //       getUser();
-  //     } else {
-  //       isLoading(false);
-  //       utils.flushBarErrorMessage("Failed to CategoryScreen", context);
-  //     }
-  //   });
-  // }
 }
