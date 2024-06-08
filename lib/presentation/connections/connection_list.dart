@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ViewLedges extends StatelessWidget {
-  const ViewLedges({super.key});
+class ConnectionScreen extends StatelessWidget {
+  const ConnectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ViewLedges extends StatelessWidget {
         backgroundColor: Styling.primaryColor,
         centerTitle: true,
         title: Text(
-          AppLocalizations.of(context)!.viewLedges,
+          AppLocalizations.of(context)!.connection,
           style: const TextStyle(color: Colors.white),
         ),
         leading: IconButton(
@@ -38,19 +38,19 @@ class ViewLedges extends StatelessWidget {
                     columns: [
                       DataColumn(
                         label: Text(
-                          'SNo',
+                          AppLocalizations.of(context)!.sno,
                           style: TextStyle(fontSize: 18.0),
                         ),
                       ),
                       DataColumn(
                         label: Text(
-                          'Name',
+                          AppLocalizations.of(context)!.mandiNames,
                           style: TextStyle(fontSize: 18.0),
                         ),
                       ),
                       DataColumn(
                         label: Text(
-                          'Amount',
+                          AppLocalizations.of(context)!.nearIds,
                           style: TextStyle(fontSize: 18.0),
                         ),
                       ),
@@ -67,13 +67,13 @@ class ViewLedges extends StatelessWidget {
                           ),
                           DataCell(
                             Text(
-                              'Ameer Jan',
+                              'Mandi ${index + 1}',
                               style: TextStyle(fontSize: 16.0),
                             ),
                           ),
                           DataCell(
                             Text(
-                              '500',
+                              'Near ID ${index + 1}',
                               style: TextStyle(fontSize: 16.0),
                             ),
                           ),
@@ -87,23 +87,6 @@ class ViewLedges extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20), // Space between table and buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                AuthButton(
-                    text: AppLocalizations.of(context)!.addNew,
-                    func: () {},
-                    color: Styling.primaryColor,
-                    height: 49.h,
-                    widht: 131.w),
-                AuthButton(
-                    text: AppLocalizations.of(context)!.edit,
-                    func: () {},
-                    color: Styling.primaryColor,
-                    height: 49.h,
-                    widht: 131.w)
-              ],
-            ),
           ],
         ),
       ),

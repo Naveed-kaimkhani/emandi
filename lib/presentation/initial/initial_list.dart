@@ -13,7 +13,7 @@ class InitialList extends StatelessWidget {
         backgroundColor: Styling.primaryColor,
         centerTitle: true,
         title: Text(
-          AppLocalizations.of(context)!.iNITIAL,
+          AppLocalizations.of(context)!.initialItemList,
           style: const TextStyle(color: Colors.white),
         ),
         leading: IconButton(

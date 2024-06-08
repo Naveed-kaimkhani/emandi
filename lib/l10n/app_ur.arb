@@ -25,14 +25,20 @@
     "addAnotherItem":"ایک اور شے شامل کریں",
     "gENERATEBILL":"بل بنائیں",
     "signupWith":"سائن اپ کریں۔",
-    "viewLedges":"ریکارڑ
- دیکھیں",
+    "viewLedges":"ریکارڑ دیکھیں",
     "editLedges":"ریکارڑ میں ترمیم کریں",
     "itemName":"شے کا نام",
     "itemContainer":"آئٹم کنٹینر",
     "initialItemList":"ابتدائی شے کی فہرست",
     "viewList":"فہرست دیکھیں",
-    "addAnotherItem":"اور شے شامل کریں"
+    "addAnotherItem":"اور شے شامل کریں",
+    "addNew":"نیا شامل کریں",
+    "edit":"ترمیم",
+    "save":"محفوظ کریں",
+    "connection":"کنکشن",
+    "sno":"سیریل نمبر",
+    "mandiNames":"منڈی کے نام",
+    "nearIds":"آئی ڈی "
     
 
 

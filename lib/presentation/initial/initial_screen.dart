@@ -152,8 +152,8 @@ class _InitialScreenState extends State<InitialScreen> {
                       AuthButton(
                           height: 56.h,
                           widht: 200.w,
-                          // text: AppLocalizations.of(context)!.addAnotherItem,
-                          text: "View List",
+                          text: AppLocalizations.of(context)!.viewList,
+                          // text: "View List",
                           func: () {
                             Navigator.pushNamed(
                                 context, RoutesName.initialList);

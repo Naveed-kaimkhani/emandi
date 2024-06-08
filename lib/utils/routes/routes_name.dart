@@ -8,5 +8,8 @@ class RoutesName {
   static const String createBillFromInitialList = 'createBillFromInitialList';
   static const String viewLedges = 'viewLedges';
   static const String editLedges = 'editLedges';
+  static const String ledgesScreen = 'ledgesScreen';
   static const String categoryScreen = 'categoryScreen';
+  
+  static const String connectionScreen = 'connectionScreen';
 }

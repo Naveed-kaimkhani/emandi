@@ -60,7 +60,7 @@ class _LedgesScreenState extends State<LedgesScreen> {
                 CustomContainer(
                   imagePath: Images.view, // Replace with your image path
                   text: AppLocalizations.of(context)!
-                      .bILLING, // Replace with your text
+                      .viewLedges, // Replace with your text
                   containerColor: Styling.primaryColor,
                   imageContainerColor: Styling.textfieldsColor,
                   navigateTo: RoutesName.viewLedges,
@@ -70,7 +70,7 @@ class _LedgesScreenState extends State<LedgesScreen> {
                 CustomContainer(
                   imagePath: Images.edit, // Replace with your image path
                   text: AppLocalizations.of(context)!
-                      .createFromInitialList, // Replace with your text
+                      .editLedges, // Replace with your text
                   containerColor: Styling.textfieldsColor,
                   imageContainerColor: Styling.primaryColor,
                   textColor: Styling.primaryColor,

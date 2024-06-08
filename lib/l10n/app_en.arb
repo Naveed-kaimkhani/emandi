@@ -31,6 +31,13 @@
     "itemContainer":"item container",
     "initialItemList":"Initial item list",
     "viewList":"View list",
-    "addAnotherItem":"Add another item"
+    "addAnotherItem":"Add another item",
+    "addNew":"Add New",
+    "edit":"Edit",
+    "save":"Save",
+    "connection":"Connection",
+    "sno":"Sno",
+    "mandiNames":"Mandi Names",
+    "nearIds":"Near Id’s"
     
 }

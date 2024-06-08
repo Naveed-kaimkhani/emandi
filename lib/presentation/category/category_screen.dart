@@ -71,14 +71,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   imagePath: Images.ledger,
                   text: AppLocalizations.of(context)!.lEDGES,
                   onTap: () {
-                    Navigator.pushNamed(context, RoutesName.billingScreen);
+                    Navigator.pushNamed(context, RoutesName.ledgesScreen);
                   },
                 ),
                 CategoryContainer(
                   imagePath: Images.connection,
                   text: AppLocalizations.of(context)!.cONNECTIONS,
                   onTap: () {
-                    // Navigator.pushNamed(context, RoutesName.billing_screen);
+                    Navigator.pushNamed(context, RoutesName.connectionScreen);
                   },
                 ),
               ],

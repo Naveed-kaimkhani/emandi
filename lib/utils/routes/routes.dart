@@ -3,9 +3,11 @@ import 'package:e_mandi/presentation/billing/billing_screen.dart';
 import 'package:e_mandi/presentation/billing/create_bill.dart';
 import 'package:e_mandi/presentation/billing/create_bill_from_initial_list.dart';
 import 'package:e_mandi/presentation/category/category_screen.dart';
+import 'package:e_mandi/presentation/connections/connection_list.dart';
 import 'package:e_mandi/presentation/initial/initial_list.dart';
 import 'package:e_mandi/presentation/initial/initial_screen.dart';
 import 'package:e_mandi/presentation/ledges/edit_ledges.dart';
+import 'package:e_mandi/presentation/ledges/ledges_screen.dart';
 import 'package:e_mandi/presentation/ledges/view_ledges.dart';
 import 'package:e_mandi/utils/routes/routes_name.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +40,12 @@ class Routes {
         return _buildRoute(const ViewLedges(), settings);
       case RoutesName.editLedges:
         return _buildRoute(const EditLedges(), settings);
+
+      case RoutesName.ledgesScreen:
+        return _buildRoute(const LedgesScreen(), settings);
+        
+      case RoutesName.connectionScreen:
+        return _buildRoute(const ConnectionScreen(), settings);
 
       default:
         return _buildRoute(

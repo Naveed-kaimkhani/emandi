@@ -1,4 +1,3 @@
-
 import 'package:e_mandi/presentation/initial/container_dropdown.dart';
 import 'package:e_mandi/presentation/initial/dropdown.dart';
 import 'package:e_mandi/presentation/initial/item_count.dart';
@@ -22,8 +21,10 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
   final _formKey = GlobalKey<FormState>();
 
   FocusNode nameFocusNode = FocusNode();
-  FocusNode phoneFocusNode = FocusNode();
+  FocusNode rateFocusNode = FocusNode();
   FocusNode fruitFocusNode = FocusNode();
+  FocusNode percentageFocusNode = FocusNode();
+  FocusNode rentFocusNode = FocusNode();
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -37,7 +38,10 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
     _nameController.dispose();
     _phoneController.dispose();
     nameFocusNode.dispose();
-    phoneFocusNode.dispose();
+    // phoneFocusNode.dispose();
+    rateFocusNode.dispose();
+    rentFocusNode.dispose();
+    percentageFocusNode.dispose();
     fruitFocusNode.dispose();
     super.dispose();
   }
@@ -111,12 +115,12 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
                       }
                     },
                   ),
-                  
+
                   ContainerDropDown(
                     currentNode: fruitFocusNode,
                     nextNode: fruitFocusNode,
                   ),
-                  
+
                   const ItemCountDropDown(),
                   FruitDropdown(
                     currentNode: fruitFocusNode,
@@ -125,9 +129,9 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
 
                   InputField(
                     hint_text: AppLocalizations.of(context)!.itemRates,
-                    currentNode: nameFocusNode,
-                    focusNode: nameFocusNode,
-                    nextNode: fruitFocusNode,
+                    currentNode: rateFocusNode,
+                    focusNode: rateFocusNode,
+                    nextNode: percentageFocusNode,
                     controller: _nameController,
                     obsecureText: false,
                     validator: (value) {
@@ -138,12 +142,12 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
                       }
                     },
                   ),
-                  
+
                   InputField(
                     hint_text: "percentage",
-                    currentNode: nameFocusNode,
-                    focusNode: nameFocusNode,
-                    nextNode: fruitFocusNode,
+                    currentNode: percentageFocusNode,
+                    focusNode: percentageFocusNode,
+                    nextNode: rentFocusNode,
                     controller: _nameController,
                     obsecureText: false,
                     validator: (value) {
@@ -156,9 +160,9 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
                   ),
                   InputField(
                     hint_text: AppLocalizations.of(context)!.rent,
-                    currentNode: nameFocusNode,
-                    focusNode: nameFocusNode,
-                    nextNode: fruitFocusNode,
+                    currentNode: rentFocusNode,
+                    focusNode: rentFocusNode,
+                    nextNode: rentFocusNode,
                     controller: _nameController,
                     obsecureText: false,
                     validator: (value) {
@@ -173,27 +177,33 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
                   SizedBox(
                     height: 30.h,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      AuthButton(
+                          height: 56.h,
+                          widht: 220.w,
+                          text: AppLocalizations.of(context)!.gENERATEBILL,
+                          func: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
 
-                  AuthButton(
-                      height: 56.h,
-                      widht: 280.w,
-                      text: AppLocalizations.of(context)!.gENERATEBILL,
-                      func: () {
-                        FocusManager.instance.primaryFocus?.unfocus();
-
-                        // _submitForm();
-                      },
-                      color: Styling.primaryColor),
-
-                  AuthButton(
-                      height: 56.h,
-                      widht: 280.w,
-                      text: AppLocalizations.of(context)!.submit,
-                      func: () {
-                        // Navigator.pushNamed(context, RoutesName.initial_list);
-                        // _submitForm();
-                      },
-                      color: Styling.primaryColor),
+                            // _submitForm();
+                          },
+                          color: Styling.primaryColor),
+                      AuthButton(
+                          height: 56.h,
+                          widht: 120.w,
+                          text: AppLocalizations.of(context)!.submit,
+                          func: () {
+                            // Navigator.pushNamed(context, RoutesName.initial_list);
+                            // _submitForm();
+                          },
+                          color: Styling.primaryColor),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
                 ],
               ),
             ),
