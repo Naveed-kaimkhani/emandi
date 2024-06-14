@@ -38,7 +38,14 @@
     "connection":"کنکشن",
     "sno":"سیریل نمبر",
     "mandiNames":"منڈی کے نام",
-    "nearIds":"آئی ڈی "
+    "nearIds":"آئی ڈی ",
+    "amount":"رقم",
+    "apple":"سیب",
+    "pear":"ناشپاتی",
+    "grapes":"انگور",
+    "potato":"آلو",
+    "carrot":""گاجر",
+    "onion":"پیاز"
     
 
 

@@ -3,6 +3,7 @@ import 'package:e_mandi/presentation/category/category_container.dart';
 // import 'package:e_mandi/presentation/widgets/SignupWithGoogle.dart';
 import 'package:e_mandi/style/images.dart';
 import 'package:e_mandi/style/styling.dart';
+import 'package:e_mandi/utils/custom_loader.dart';
 import 'package:e_mandi/utils/routes/routes_name.dart';
 // import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,12 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // LoaderOverlay.hide();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

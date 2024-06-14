@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:e_mandi/style/styling.dart';
 
-class ItemCountDropDown extends StatelessWidget {
-  final Function(int) onSelected;
+class FruitDropdown extends StatelessWidget {
+  final FocusNode currentNode;
+  final FocusNode nextNode;
+  final Function(String) onSelected;
 
-  const ItemCountDropDown({
+  const FruitDropdown({
     Key? key,
+    required this.currentNode,
+    required this.nextNode,
     required this.onSelected,
   }) : super(key: key);
 
@@ -19,20 +23,22 @@ class ItemCountDropDown extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<int>(
-          items: <int>[5, 10, 15].map((int value) {
-            return DropdownMenuItem<int>(
+        child: DropdownButton<String>(
+          items: <String>['Apple', 'Banana', 'Orange'].map((String value) {
+            return DropdownMenuItem<String>(
               value: value,
-              child: Text(value.toString()),
+              child: Text(value),
             );
           }).toList(),
           onChanged: (newValue) {
             if (newValue != null) {
               onSelected(newValue);
+              // Move focus to the next node
+              FocusScope.of(context).requestFocus(nextNode);
             }
           },
           hint: Text(
-            'Item count',
+            'Select Fruit',
             style: TextStyle(
               color: const Color.fromARGB(255, 112, 102, 102),
               fontSize: 17.sp,

@@ -38,6 +38,13 @@
     "connection":"Connection",
     "sno":"Sno",
     "mandiNames":"Mandi Names",
-    "nearIds":"Near Id’s"
-    
+    "nearIds":"Near Id’s",
+    "amount":"Amount",
+    "apple":"Apple",
+    "pear":"Pear",
+    "grapes":"Grapes",
+    "vegetables":"Vegetables",
+    "potato":"Potato",
+    "carrot":"Carrot",
+    "onion":"Onion"
 }

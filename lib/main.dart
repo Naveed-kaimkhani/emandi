@@ -2,16 +2,8 @@ import 'package:e_mandi/bloc/bloc/login_bloc.dart';
 import 'package:e_mandi/data/firebase/firebase_auth_repository.dart';
 import 'package:e_mandi/domain/repositories/auth_repository.dart';
 import 'package:e_mandi/firebase_options.dart';
-import 'package:e_mandi/presentation/auth/login_screen.dart';
-import 'package:e_mandi/presentation/billing/billing_screen.dart';
-import 'package:e_mandi/presentation/billing/create_bill_from_initial_list.dart';
-import 'package:e_mandi/presentation/category/category_screen.dart';
-import 'package:e_mandi/presentation/connections/connection_list.dart';
 import 'package:e_mandi/presentation/initial/initial_list.dart';
 import 'package:e_mandi/presentation/initial/initial_screen.dart';
-import 'package:e_mandi/presentation/ledges/edit_ledges.dart';
-import 'package:e_mandi/presentation/ledges/ledges_screen.dart';
-import 'package:e_mandi/presentation/ledges/view_ledges.dart';
 import 'package:e_mandi/utils/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -21,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'presentation/onboarding/onboarding.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -29,6 +23,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 GetIt getIt = GetIt.instance;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  var dir= await getApplicationDocumentsDirectory();
+  Hive.init(dir.path);
+    // await Hive.openBox<Map>('billingBox');
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -68,7 +66,7 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home:CategoryScreen(),
+                home:InitialList(),
                 onGenerateRoute: Routes.onGenerateRoute,
               );
             },

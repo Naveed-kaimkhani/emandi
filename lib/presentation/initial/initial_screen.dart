@@ -1,5 +1,7 @@
+import 'package:e_mandi/data/hive/hive_repository.dart';
+import 'package:e_mandi/domain/entities/bill_model.dart';
 import 'package:e_mandi/presentation/initial/container_dropdown.dart';
-import 'package:e_mandi/presentation/initial/dropdown.dart';
+import 'package:e_mandi/presentation/initial/fruits_dropdown.dart';
 import 'package:e_mandi/presentation/initial/item_count.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
 import 'package:e_mandi/presentation/widgets/input_field.dart';
@@ -18,40 +20,38 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-  // final FirebaseUserRepository _firebaseUserRepository =
-  //     FirebaseUserRepository();          // replace this thing with getx
   final _formKey = GlobalKey<FormState>();
 
   FocusNode nameFocusNode = FocusNode();
-  FocusNode phoneFocusNode = FocusNode();
-  FocusNode fruitFocusNode = FocusNode();
+  FocusNode rentFocusNode = FocusNode();
 
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  // final TextEditingController _addressController = TextEditingController();
-  Widget k = SizedBox(
-    height: 16.h,
-  );
-  // void isLoading(bool value) {
-  //   setState(() {
-  //     isLoadingNow = value;
-  //   });
-  // }
+  final TextEditingController _rentController = TextEditingController();
+  final ItemRepository _ItemRepository = ItemRepository();
+
+  String? _selectedItem;
+  String? _selectedContainer;
+  int? _itemCount;
 
   @override
   void dispose() {
     _nameController.dispose();
-    _phoneController.dispose();
+    _rentController.dispose();
     nameFocusNode.dispose();
-    phoneFocusNode.dispose();
-    fruitFocusNode.dispose();
+    rentFocusNode.dispose();
     super.dispose();
   }
 
-  @override
-  void initState() {
-    // utils.checkConnectivity(context);
-    super.initState();
+  void _addBilling() async {
+    final billing = ItemModel(
+      name: _nameController.text,
+      selectedItem: _selectedItem!,
+      selectedContainer: _selectedContainer!,
+      itemCount: _itemCount!,
+      rent: double.parse(_rentController.text),
+    );
+
+    await _ItemRepository.addBilling(billing);
   }
 
   @override
@@ -86,12 +86,11 @@ class _InitialScreenState extends State<InitialScreen> {
                   SizedBox(
                     height: 40.h,
                   ),
-
                   InputField(
                     hint_text: AppLocalizations.of(context)!.enterUserName,
                     currentNode: nameFocusNode,
                     focusNode: nameFocusNode,
-                    nextNode: fruitFocusNode,
+                    nextNode: rentFocusNode,
                     controller: _nameController,
                     obsecureText: false,
                     validator: (value) {
@@ -102,22 +101,42 @@ class _InitialScreenState extends State<InitialScreen> {
                       }
                     },
                   ),
-                  FruitDropdown(
-                    currentNode: fruitFocusNode,
-                    nextNode: fruitFocusNode,
+                  ContainerDropDown(
+                    onSelected: (value) {
+                      setState(() {
+                        _selectedItem = value;
+                      });
+                    },
+                    items: ['banana', 'apple', 'oragne'],
+                    hintText: 'Select fruit',
+                    displayText: (value) => value,
                   ),
                   ContainerDropDown(
-                    currentNode: fruitFocusNode,
-                    nextNode: fruitFocusNode,
+                    onSelected: (value) {
+                      setState(() {
+                        _selectedContainer = value;
+                      });
+                    },
+                    items: ['Box', 'Bag', 'Crate'],
+                    hintText: 'Select Container',
+                    displayText: (value) => value,
                   ),
-                  const ItemCountDropDown(),
-
+                  ContainerDropDown(
+                    onSelected: (value) {
+                      setState(() {
+                        _itemCount = value;
+                      });
+                    },
+                    items: [2, 4, 6, 8, 10],
+                    hintText: 'Select Container',
+                    displayText: (value) => value.toString(),
+                  ),
                   InputField(
                     hint_text: AppLocalizations.of(context)!.rent,
-                    currentNode: nameFocusNode,
-                    focusNode: nameFocusNode,
-                    nextNode: fruitFocusNode,
-                    controller: _nameController,
+                    currentNode: rentFocusNode,
+                    focusNode: rentFocusNode,
+                    nextNode: rentFocusNode,
+                    controller: _rentController,
                     obsecureText: false,
                     validator: (value) {
                       if (value.isEmpty) {
@@ -127,11 +146,9 @@ class _InitialScreenState extends State<InitialScreen> {
                       }
                     },
                   ),
-                  // k,
                   SizedBox(
                     height: 30.h,
                   ),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -141,23 +158,18 @@ class _InitialScreenState extends State<InitialScreen> {
                           text: AppLocalizations.of(context)!.submit,
                           func: () {
                             FocusManager.instance.primaryFocus?.unfocus();
-
-                            // _submitForm();
+                            if (_formKey.currentState!.validate()) {
+                              _addBilling();
+                            }
                           },
                           color: Styling.primaryColor),
-
-                      // SizedBox(
-                      //   height: 10.h,
-                      // ),
                       AuthButton(
                           height: 56.h,
                           widht: 200.w,
                           text: AppLocalizations.of(context)!.viewList,
-                          // text: "View List",
                           func: () {
                             Navigator.pushNamed(
                                 context, RoutesName.initialList);
-                            // _submitForm();
                           },
                           color: Styling.primaryColor),
                     ],

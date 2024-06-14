@@ -93,7 +93,7 @@ class Onboarding extends StatelessWidget {
                     widht: 250.w,
                     text: AppLocalizations.of(context)!.getStarted,
                     func: () {
-                      Navigator.pushNamed(context, RoutesName.categoryScreen);
+                      Navigator.pushNamed(context, RoutesName.login);
                     },
                     color: Styling.primaryColor,
                   ),

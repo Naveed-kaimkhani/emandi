@@ -1,5 +1,5 @@
 import 'package:e_mandi/presentation/initial/container_dropdown.dart';
-import 'package:e_mandi/presentation/initial/dropdown.dart';
+import 'package:e_mandi/presentation/initial/fruits_dropdown.dart';
 import 'package:e_mandi/presentation/initial/item_count.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
 import 'package:e_mandi/presentation/widgets/input_field.dart';
@@ -28,10 +28,10 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  // final TextEditingController _addressController = TextEditingController();
-  Widget k = SizedBox(
-    height: 16.h,
-  );
+
+  String? _selectedItem;
+  String? _selectedContainer;
+  int? _itemCount;
 
   @override
   void dispose() {
@@ -117,14 +117,33 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
                   ),
 
                   ContainerDropDown(
-                    currentNode: fruitFocusNode,
-                    nextNode: fruitFocusNode,
+                    onSelected: (value) {
+                      setState(() {
+                        _selectedContainer = value;
+                      });
+                    },
+                      items: ['Box', 'Bag', 'Crate'],
+                        hintText: 'Select Container',
+                  displayText: (value) => value,
+
+
                   ),
 
-                  const ItemCountDropDown(),
+                  ItemCountDropDown(
+                    onSelected: (value) {
+                      setState(() {
+                        _itemCount = value;
+                      });
+                    },
+                  ),
                   FruitDropdown(
-                    currentNode: fruitFocusNode,
-                    nextNode: fruitFocusNode,
+                    currentNode: rentFocusNode,
+                    nextNode: rentFocusNode,
+                    onSelected: (value) {
+                      setState(() {
+                        _selectedItem = value;
+                      });
+                    },
                   ),
 
                   InputField(
@@ -144,7 +163,7 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
                   ),
 
                   InputField(
-                    hint_text: "percentage",
+                    hint_text: AppLocalizations.of(context)!.porterages,
                     currentNode: percentageFocusNode,
                     focusNode: percentageFocusNode,
                     nextNode: rentFocusNode,

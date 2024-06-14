@@ -1,91 +1,59 @@
-import 'package:e_mandi/style/styling.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:e_mandi/style/styling.dart';
 
-class ContainerDropDown extends StatefulWidget {
-  final FocusNode currentNode;
-  final FocusNode nextNode;
+class ContainerDropDown<T> extends StatelessWidget {
+  final List<T> items;
+  final Function(T) onSelected;
+  final String hintText;
+  final String Function(T) displayText;
 
   const ContainerDropDown({
     Key? key,
-    required this.currentNode,
-    required this.nextNode,
+    required this.items,
+    required this.onSelected,
+    required this.hintText,
+    required this.displayText,
   }) : super(key: key);
 
   @override
-  _ContainerDropDownState createState() => _ContainerDropDownState();
-}
-
-class _ContainerDropDownState extends State<ContainerDropDown> {
-  final List<String> containers = [
-    'Shopper',
-    'Patti',
-  ];
-  String? selectedContainer;
-
-  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(14.h),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Styling.textfieldsColor,
-          borderRadius: BorderRadius.circular(35.r),
-          boxShadow: [
-            const BoxShadow(
-              color: Colors.black26,
-              blurRadius: 5.0,
-              offset: Offset(0, 3),
+    return Container(
+      decoration: BoxDecoration(
+        color: Styling.textfieldsColor,
+        borderRadius: BorderRadius.circular(50.r),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<T>(
+          items: items.map((T value) {
+            return DropdownMenuItem<T>(
+              value: value,
+              child: Text(displayText(value)),
+            );
+          }).toList(),
+          onChanged: (newValue) {
+            if (newValue != null) {
+              onSelected(newValue);
+            }
+          },
+          hint: Text(
+            hintText,
+            style: TextStyle(
+              color: const Color.fromARGB(255, 112, 102, 102),
+              fontSize: 17.sp,
             ),
-          ],
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-          child: DropdownButtonFormField<String>(
-            focusNode: widget.currentNode,
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.selectContainer,
-              border: InputBorder.none,
-            ),
-            value: selectedContainer,
-            items: containers.map((String container) {
-              return DropdownMenuItem<String>(
-                value: container,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.r),
-                    color: selectedContainer == container
-                        ? Styling.primaryColor.withOpacity(0.2)
-                        : Colors.transparent,
-                  ),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 1.h),
-                  child: Text(
-                    container,
-                    style: TextStyle(
-                      color: selectedContainer == container
-                          ? Styling.primaryColor
-                          : Colors.black,
-                    ),
-                  ),
-                ),
-              );
-            }).toList(),
-            onChanged: (newValue) {
-              setState(() {
-                selectedContainer = newValue;
-              });
-              // Move to the next focus node
-              FocusScope.of(context).requestFocus(widget.nextNode);
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return "Please select a container";
-              }
-              return null;
-            },
           ),
+          icon: const Icon(
+            Icons.arrow_drop_down,
+            color: Color.fromARGB(255, 65, 61, 61),
+          ),
+          style: const TextStyle(
+            color: Colors.black,
+            fontFamily: "Sansita",
+            fontSize: 16,
+          ),
+          dropdownColor: Styling.textfieldsColor,
         ),
       ),
     );

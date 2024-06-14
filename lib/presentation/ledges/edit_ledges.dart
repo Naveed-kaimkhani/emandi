@@ -51,21 +51,21 @@ class _EditLedgesState extends State<EditLedges> {
                   scrollDirection: Axis.vertical,
                   child: DataTable(
                     columns: [
-                      const DataColumn(
+                      DataColumn(
                         label: Text(
-                          'SNo',
+                          AppLocalizations.of(context)!.sno,
                           style: TextStyle(fontSize: 18.0),
                         ),
                       ),
-                      const DataColumn(
+                      DataColumn(
                         label: Text(
-                          'Name',
+                          AppLocalizations.of(context)!.name,
                           style: TextStyle(fontSize: 18.0),
                         ),
                       ),
-                      const DataColumn(
+                      DataColumn(
                         label: Text(
-                          'Amount',
+                          AppLocalizations.of(context)!.amount,
                           style: TextStyle(fontSize: 18.0),
                         ),
                       ),
@@ -127,8 +127,8 @@ class _EditLedgesState extends State<EditLedges> {
                   widht: 131.w,
                 ),
                 AuthButton(
-                  // text: AppLocalizations.of(context)!.save,
-                  text: "Save",
+                  text: AppLocalizations.of(context)!.save,
+                  // text: "Save",
                   func: () {
                     FocusManager.instance.primaryFocus?.unfocus();
                   },

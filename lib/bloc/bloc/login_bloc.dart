@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_mandi/data/firebase/firebase_auth_repository.dart';
 import 'package:e_mandi/services/session_manager/session_controller.dart';
+import 'package:e_mandi/utils/custom_loader.dart';
 import 'package:e_mandi/utils/enums.dart';
 import 'package:e_mandi/utils/utils.dart';
 import 'package:equatable/equatable.dart';
@@ -38,23 +39,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     LoginApi event,
     Emitter<LoginState> emit,
   ) async {
-    // Map<String, String> data = {
-    //   'email': 'eve.holt@reqres.in',
-    //   'password': 'cityslicka',
-    // };
-    Map<String, String> data = {
-      'email': state.email,
-      'password': state.password,
-    };
     emit(state.copyWith(
       postApiStatus: PostApiStatus.loading,
     ));
 
     try {
       final user = await firebaseAuthRepository.loginWithGoogle();
-      await SessionController().saveUserInPreference(user);
-      await SessionController().getUserFromPreference();
-      emit(state.copyWith(postApiStatus: PostApiStatus.success));
+      // await SessionController().saveUserInPreference(user);
+      // await SessionController().getUserFromPreference();
+      // LoaderOverlay.hide();
+      emit(state.copyWith(
+          postApiStatus: PostApiStatus.success, message: "Login Successful"));
     } catch (error) {
       emit(state.copyWith(
         postApiStatus: PostApiStatus.error,
@@ -62,6 +57,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       ));
     }
   }
+
   Future<void> _loginWithEmailPass(
     LoginWithEmailPass event,
     Emitter<LoginState> emit,
@@ -79,9 +75,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     ));
 
     try {
-      final user = await firebaseAuthRepository.loginWithGoogle();
-      await SessionController().saveUserInPreference(user);
-      await SessionController().getUserFromPreference();
+      // final user = await firebaseAuthRepository.loginWithEmailPass("email", "password", context);
+      // await SessionController().saveUserInPreference(user);
+      // await SessionController().getUserFromPreference();
       emit(state.copyWith(postApiStatus: PostApiStatus.success));
     } catch (error) {
       emit(state.copyWith(
