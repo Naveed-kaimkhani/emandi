@@ -1,4 +1,4 @@
-import 'package:e_mandi/domain/entities/bill_model.dart';
+import 'package:e_mandi/domain/entities/item_model.dart';
 import 'package:hive/hive.dart';
 
 class ItemRepository {

@@ -1,3 +1,4 @@
+import 'package:e_mandi/main.dart';
 import 'package:e_mandi/presentation/auth/login_screen.dart';
 import 'package:e_mandi/presentation/billing/billing_screen.dart';
 import 'package:e_mandi/presentation/billing/create_bill.dart';
@@ -19,7 +20,7 @@ class Routes {
         return _buildRoute(const LoginScreen(), settings);
 
       case RoutesName.initialScreen:
-        return _buildRoute(const InitialScreen(), settings);
+        return _buildRoute(InitialScreen(itemRepository: getIt(),), settings);
 
       case RoutesName.billingScreen:
         return _buildRoute(const BillingScreen(), settings);
@@ -31,10 +32,10 @@ class Routes {
         return _buildRoute(const InitialList(), settings);
 
       case RoutesName.createBill:
-        return _buildRoute(const CreateBillFromScratch(), settings);
+        return _buildRoute(CreateBillFromScratch(billingRepository: getIt(),), settings);
 
       case RoutesName.createBillFromInitialList:
-        return _buildRoute(const CreateBillFromInitialList(), settings);
+        return _buildRoute( CreateBillFromInitialList(), settings);
 
       case RoutesName.viewLedges:
         return _buildRoute(const ViewLedges(), settings);

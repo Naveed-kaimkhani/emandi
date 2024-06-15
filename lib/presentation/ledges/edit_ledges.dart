@@ -125,10 +125,12 @@ class _EditLedgesState extends State<EditLedges> {
                   color: Styling.primaryColor,
                   height: 49.h,
                   widht: 131.w,
+                  fontsize: 20.sp,
                 ),
                 AuthButton(
                   text: AppLocalizations.of(context)!.save,
                   // text: "Save",
+                  fontsize: 20.sp,
                   func: () {
                     FocusManager.instance.primaryFocus?.unfocus();
                   },

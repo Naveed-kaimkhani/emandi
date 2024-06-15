@@ -91,6 +91,7 @@ class Onboarding extends StatelessWidget {
                   AuthButton(
                     height: 46.h,
                     widht: 250.w,
+                    fontsize: 20.sp,
                     text: AppLocalizations.of(context)!.getStarted,
                     func: () {
                       Navigator.pushNamed(context, RoutesName.login);

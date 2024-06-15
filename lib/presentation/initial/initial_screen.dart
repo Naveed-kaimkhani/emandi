@@ -1,8 +1,6 @@
-import 'package:e_mandi/data/hive/hive_repository.dart';
-import 'package:e_mandi/domain/entities/bill_model.dart';
+import 'package:e_mandi/data/hive/item_repository.dart';
+import 'package:e_mandi/domain/entities/item_model.dart';
 import 'package:e_mandi/presentation/initial/container_dropdown.dart';
-import 'package:e_mandi/presentation/initial/fruits_dropdown.dart';
-import 'package:e_mandi/presentation/initial/item_count.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
 import 'package:e_mandi/presentation/widgets/input_field.dart';
 import 'package:e_mandi/utils/routes/routes_name.dart';
@@ -13,7 +11,9 @@ import '../../style/styling.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InitialScreen extends StatefulWidget {
-  const InitialScreen({Key? key}) : super(key: key);
+  final ItemRepository itemRepository;
+
+  const InitialScreen({super.key, required this.itemRepository});
 
   @override
   State<InitialScreen> createState() => _InitialScreenState();
@@ -27,8 +27,6 @@ class _InitialScreenState extends State<InitialScreen> {
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _rentController = TextEditingController();
-  final ItemRepository _ItemRepository = ItemRepository();
-
   String? _selectedItem;
   String? _selectedContainer;
   int? _itemCount;
@@ -42,16 +40,25 @@ class _InitialScreenState extends State<InitialScreen> {
     super.dispose();
   }
 
-  void _addBilling() async {
-    final billing = ItemModel(
-      name: _nameController.text,
-      selectedItem: _selectedItem!,
-      selectedContainer: _selectedContainer!,
-      itemCount: _itemCount!,
-      rent: double.parse(_rentController.text),
-    );
+  void _addItem() async {
+    if (_formKey.currentState!.validate() &&
+        _selectedItem != null &&
+        _selectedContainer != null &&
+        _itemCount != null) {
+      final billing = ItemModel(
+        name: _nameController.text,
+        selectedItem: _selectedItem!,
+        selectedContainer: _selectedContainer!,
+        itemCount: _itemCount!,
+        rent: double.parse(_rentController.text),
+      );
 
-    await _ItemRepository.addBilling(billing);
+      await widget.itemRepository.addItem(billing);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Enter")),
+      );
+    }
   }
 
   @override
@@ -94,41 +101,51 @@ class _InitialScreenState extends State<InitialScreen> {
                     controller: _nameController,
                     obsecureText: false,
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value == null || value.isEmpty) {
                         return "Enter name";
                       } else {
                         return null;
                       }
                     },
                   ),
-                  ContainerDropDown(
+                  ContainerDropDown<String>(
+                    selectedItem: _selectedItem,
                     onSelected: (value) {
                       setState(() {
                         _selectedItem = value;
                       });
                     },
-                    items: ['banana', 'apple', 'oragne'],
+                    items: [
+                      AppLocalizations.of(context)!.apple,
+                      AppLocalizations.of(context)!.pear,
+                      AppLocalizations.of(context)!.grapes,
+                      AppLocalizations.of(context)!.carrot,
+                      AppLocalizations.of(context)!.potato,
+                      AppLocalizations.of(context)!.onion,
+                    ],
                     hintText: 'Select fruit',
                     displayText: (value) => value,
                   ),
-                  ContainerDropDown(
+                  ContainerDropDown<String>(
+                    selectedItem: _selectedContainer,
                     onSelected: (value) {
                       setState(() {
                         _selectedContainer = value;
                       });
                     },
-                    items: ['Box', 'Bag', 'Crate'],
+                    items: const ['Box', 'Bag', 'Crate'],
                     hintText: 'Select Container',
                     displayText: (value) => value,
                   ),
-                  ContainerDropDown(
+                  ContainerDropDown<int>(
+                    selectedItem: _itemCount,
                     onSelected: (value) {
                       setState(() {
                         _itemCount = value;
                       });
                     },
-                    items: [2, 4, 6, 8, 10],
-                    hintText: 'Select Container',
+                    items: const [2, 4, 6, 8, 10],
+                    hintText: 'Select Count',
                     displayText: (value) => value.toString(),
                   ),
                   InputField(
@@ -139,7 +156,7 @@ class _InitialScreenState extends State<InitialScreen> {
                     controller: _rentController,
                     obsecureText: false,
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value == null || value.isEmpty) {
                         return "Enter Rent";
                       } else {
                         return null;
@@ -155,15 +172,24 @@ class _InitialScreenState extends State<InitialScreen> {
                       AuthButton(
                           height: 56.h,
                           widht: 110.w,
+                          fontsize: 20.sp,
                           text: AppLocalizations.of(context)!.submit,
                           func: () {
                             FocusManager.instance.primaryFocus?.unfocus();
-                            if (_formKey.currentState!.validate()) {
-                              _addBilling();
+                            if (_formKey.currentState!.validate() &&
+                                _selectedItem != null &&
+                                _selectedContainer != null &&
+                                _itemCount != null) {
+                              _addItem();
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("Enter")),
+                              );
                             }
                           },
                           color: Styling.primaryColor),
                       AuthButton(
+                        fontsize: 20.sp,
                           height: 56.h,
                           widht: 200.w,
                           text: AppLocalizations.of(context)!.viewList,

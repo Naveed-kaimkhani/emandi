@@ -93,12 +93,14 @@ class ViewLedges extends StatelessWidget {
                 AuthButton(
                     text: AppLocalizations.of(context)!.addNew,
                     func: () {},
+                    fontsize: 20.sp,
                     color: Styling.primaryColor,
                     height: 49.h,
                     widht: 131.w),
                 AuthButton(
                     text: AppLocalizations.of(context)!.edit,
                     func: () {},
+                    fontsize: 20.sp,
                     color: Styling.primaryColor,
                     height: 49.h,
                     widht: 131.w)

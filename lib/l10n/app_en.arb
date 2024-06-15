@@ -46,5 +46,7 @@
     "vegetables":"Vegetables",
     "potato":"Potato",
     "carrot":"Carrot",
-    "onion":"Onion"
+    "onion":"Onion",
+    "price":"Price",
+    "date":"Date"
 }

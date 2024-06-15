@@ -1,14 +1,24 @@
-import 'package:e_mandi/domain/entities/bill_model.dart';
+import 'package:e_mandi/domain/entities/item_model.dart';
 import 'package:hive/hive.dart';
 
 class BillingRepository {
   static const String _boxName = 'BillingBox';
 
-  Future<void> addBilling(ItemModel billing) async {
-    final box = await Hive.openBox<ItemModel>(_boxName);
-    await box.add(billing);
+
+  // Future<void> addBill(ItemModel item) async {
+  //   final box = await Hive.openBox<Map>(_boxName);
+  //   await box.add(item.toJson());
+  //   await box.close();
+  //   print('bill added');
+  // }
+  
+   Future<void> addBill(List<ItemModel> items) async {
+    final box = await Hive.openBox<Map>(_boxName);
+    for (var item in items) {
+      await box.add(item.toJson());
+    }
     await box.close();
-    print('Billing added');
+    print('bills added');
   }
 
   Future<List<ItemModel>> getAllBillings() async {

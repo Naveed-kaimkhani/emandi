@@ -7,6 +7,8 @@ class AuthButton extends StatelessWidget {
   final Function()? func;
   final Color? color;
   final double height;
+  
+  final double fontsize;
 
   final double widht;
   const AuthButton({
@@ -15,7 +17,7 @@ class AuthButton extends StatelessWidget {
     required this.color,
     required this.height,
     required this.widht,
-    super.key,
+    super.key, required this.fontsize,
   });
 
   @override
@@ -41,7 +43,7 @@ class AuthButton extends StatelessWidget {
           child: Text(
             text!,
             style: TextStyle(
-                fontSize: 20.sp,
+                fontSize: fontsize,
                 fontWeight: FontWeight.w500,
                 color: Colors.white),
           ),

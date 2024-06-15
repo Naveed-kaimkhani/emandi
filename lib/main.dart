@@ -1,7 +1,10 @@
 import 'package:e_mandi/bloc/bloc/login_bloc.dart';
 import 'package:e_mandi/data/firebase/firebase_auth_repository.dart';
+import 'package:e_mandi/data/hive/billing_repository.dart';
+import 'package:e_mandi/data/hive/item_repository.dart';
 import 'package:e_mandi/domain/repositories/auth_repository.dart';
 import 'package:e_mandi/firebase_options.dart';
+import 'package:e_mandi/presentation/billing/create_bill.dart';
 import 'package:e_mandi/presentation/initial/initial_list.dart';
 import 'package:e_mandi/presentation/initial/initial_screen.dart';
 import 'package:e_mandi/utils/routes/routes.dart';
@@ -23,9 +26,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 GetIt getIt = GetIt.instance;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  var dir= await getApplicationDocumentsDirectory();
+  var dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
-    // await Hive.openBox<Map>('billingBox');
+  // await Hive.openBox<Map>('billingBox');
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -66,7 +69,9 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home:InitialList(),
+                home: CreateBillFromScratch(
+                  billingRepository: getIt(),
+                ),
                 onGenerateRoute: Routes.onGenerateRoute,
               );
             },
@@ -80,5 +85,8 @@ class MyApp extends StatelessWidget {
 void servicesLocator() {
   getIt.registerLazySingleton<AuthRepository>(() =>
       FirebaseAuthRepository()); // Registering AuthHttpApiRepository as a lazy singleton for AuthApiRepository
-  // getIt.registerLazySingleton<MoviesApiRepository>(() => MoviesHttpApiRepository()); // Registering MoviesHttpApiRepository as a lazy singleton for MoviesApiRepository
+
+  getIt.registerLazySingleton<ItemRepository>(() => ItemRepository());
+
+  getIt.registerLazySingleton<BillingRepository>(() => BillingRepository());
 }

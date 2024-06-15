@@ -7,6 +7,7 @@ class ContainerDropDown<T> extends StatelessWidget {
   final Function(T) onSelected;
   final String hintText;
   final String Function(T) displayText;
+  final T? selectedItem;
 
   const ContainerDropDown({
     Key? key,
@@ -14,18 +15,22 @@ class ContainerDropDown<T> extends StatelessWidget {
     required this.onSelected,
     required this.hintText,
     required this.displayText,
+    this.selectedItem,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 360.w,
       decoration: BoxDecoration(
         color: Styling.textfieldsColor,
         borderRadius: BorderRadius.circular(50.r),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 2.h),
+      margin: EdgeInsets.symmetric(vertical: 10.h),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<T>(
+          value: selectedItem,
           items: items.map((T value) {
             return DropdownMenuItem<T>(
               value: value,
@@ -38,7 +43,7 @@ class ContainerDropDown<T> extends StatelessWidget {
             }
           },
           hint: Text(
-            hintText,
+            selectedItem != null ? displayText(selectedItem!) : hintText,
             style: TextStyle(
               color: const Color.fromARGB(255, 112, 102, 102),
               fontSize: 17.sp,

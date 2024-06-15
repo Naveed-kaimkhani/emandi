@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:e_mandi/style/styling.dart';
-import 'package:e_mandi/data/hive/hive_repository.dart';
-import 'package:e_mandi/domain/entities/bill_model.dart';
+import 'package:e_mandi/data/hive/item_repository.dart';
+import 'package:e_mandi/domain/entities/item_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InitialList extends StatefulWidget {
@@ -18,7 +18,7 @@ class _InitialListState extends State<InitialList> {
   @override
   void initState() {
     super.initState();
-    _billsFuture = _ItemRepository.getAllBillings();
+    _billsFuture = _ItemRepository.getAllItems();
   }
 
   @override
