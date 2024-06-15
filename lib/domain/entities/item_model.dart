@@ -23,7 +23,8 @@ class ItemModel {
       'selectedContainer': selectedContainer,
       'itemCount': itemCount,
       'rent': rent,
-      'percentage': percentage ?? "", // Default to empty string if percentage is null
+      'percentage':
+          percentage ?? "", // Default to empty string if percentage is null
     };
   }
 

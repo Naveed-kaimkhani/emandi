@@ -1,4 +1,3 @@
-
 import 'package:e_mandi/data/hive/billing_repository.dart';
 import 'package:e_mandi/domain/entities/item_model.dart';
 import 'package:e_mandi/presentation/billing/invoice_screen.dart';
@@ -53,24 +52,24 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
   }
 
   void _generateBill() {
-    if (
-        // _formKey.currentState!.validate() &&
-        //   _selectedItem != null &&
-        //   _selectedContainer != null &&
-        //   _itemCount != null
-        true) {
+    if (_formKey.currentState!.validate() &&
+            _selectedItem != null &&
+            _selectedContainer != null &&
+            _itemCount != null
+        // true
+        ) {
       final newItem = ItemModel(
-        // name: _nameController.text,
-        // selectedItem: _selectedItem!,
-        // selectedContainer: _selectedContainer!,
-        // itemCount: _itemCount!,
-        // rent: double.parse(_rentController.text),
+        name: _nameController.text,
+        selectedItem: _selectedItem!,
+        selectedContainer: _selectedContainer!,
+        itemCount: _itemCount!,
+        rent: double.parse(_rentController.text),
 
-        name: "naveed",
-        selectedItem:"amgoooo",
-        selectedContainer: "shopper",
-        itemCount: 5,
-        rent: 10.0,
+        // name: "naveed",
+        // selectedItem: "amgoooo",
+        // selectedContainer: "shopper",
+        // itemCount: 5,
+        // rent: 10.0,
       );
       setState(() {
         _items.add(newItem);

@@ -54,5 +54,6 @@
     "commission":"Commission",
     "fare":"Fare",
     "total":"total",
-    "description":"Description"
+    "description":"Description",
+    "share":"share"
 }
