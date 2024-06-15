@@ -48,5 +48,11 @@
     "carrot":"Carrot",
     "onion":"Onion",
     "price":"Price",
-    "date":"Date"
+    "date":"Date",
+    "invoice":"Invoice",
+    "print":"print",
+    "commission":"Commission",
+    "fare":"Fare",
+    "total":"total",
+    "description":"Description"
 }

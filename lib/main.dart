@@ -28,11 +28,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var dir = await getApplicationDocumentsDirectory();
   Hive.init(dir.path);
-  // await Hive.openBox<Map>('billingBox');
+  // // await Hive.openBox<Map>('billingBox');
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   servicesLocator(); // Initializing service locator for dependency injection
 
   runApp(MyApp());

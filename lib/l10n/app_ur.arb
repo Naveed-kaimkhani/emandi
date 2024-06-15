@@ -47,8 +47,14 @@
     "carrot":"گاجر",
     "onion":"پیاز",
     "price":"قیمت",
-    "date":"تاریخ"
-    
+    "date":"تاریخ",
+    "invoice":"رسید",
+    "print":"پرنٹ",
+    "commission":"کمیشن",
+    "fare":"مزدوری",
+    "total":"کل",
+    "description":"تفصیل"
+
 
 
 
