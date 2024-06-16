@@ -55,5 +55,6 @@
     "fare":"Fare",
     "total":"total",
     "description":"Description",
-    "share":"share"
+    "share":"share",
+    "cancel":"Cancel"
 }

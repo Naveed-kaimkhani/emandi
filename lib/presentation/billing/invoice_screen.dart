@@ -85,210 +85,205 @@ class InvoiceScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 18.sp, color: Colors.black),
                 ),
                 SizedBox(height: 16.h),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Card(
-                        elevation: 4.0,
-                        margin: EdgeInsets.only(top: 8.0.h),
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0.w),
-                          child: ListView(
-                            shrinkWrap: true,
-                            children: [
-                              Table(
-                                border: TableBorder.all(color: Colors.black),
-                                children: [
-                                  TableRow(
-                                    decoration:
-                                        BoxDecoration(color: Colors.grey[300]),
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.all(8.0.w),
-                                        child: Text(
-                                          AppLocalizations.of(context)!
-                                              .itemName,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.bold),
-                                        ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Card(
+                      elevation: 4.0,
+                      margin: EdgeInsets.only(top: 8.0.h),
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0.w),
+                        child: ListView(
+                          shrinkWrap: true,
+                          children: [
+                            Table(
+                              border: TableBorder.all(color: Colors.black),
+                              children: [
+                                TableRow(
+                                  decoration:
+                                      BoxDecoration(color: Colors.grey[300]),
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0.w),
+                                      child: Text(
+                                        AppLocalizations.of(context)!.itemName,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.all(8.0.w),
-                                        child: Text(
-                                          AppLocalizations.of(context)!
-                                              .itemCount,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.bold),
-                                        ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0.w),
+                                      child: Text(
+                                        AppLocalizations.of(context)!.itemCount,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.all(8.0.w),
-                                        child: Text(
-                                          AppLocalizations.of(context)!.price,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.bold),
-                                        ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0.w),
+                                      child: Text(
+                                        AppLocalizations.of(context)!.price,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 18.sp,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    ],
-                                  ),
-                                  ...bills.map((bill) => TableRow(
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.all(8.0.w),
-                                            child: Text(bill.selectedItem,
-                                                style:
-                                                    TextStyle(fontSize: 16.sp)),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.all(8.0.w),
-                                            child: Text(
-                                                bill.itemCount.toString(),
-                                                style:
-                                                    TextStyle(fontSize: 16.sp)),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.all(8.0.w),
-                                            child: Text(
-                                                bill.rent.toStringAsFixed(2),
-                                                style:
-                                                    TextStyle(fontSize: 16.sp)),
-                                          ),
-                                        ],
-                                      )),
-                                ],
-                              ),
-                            ],
-                          ),
+                                    ),
+                                  ],
+                                ),
+                                ...bills.map((bill) => TableRow(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(8.0.w),
+                                          child: Text(bill.selectedItem,
+                                              style:
+                                                  TextStyle(fontSize: 16.sp)),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(8.0.w),
+                                          child: Text(bill.itemCount.toString(),
+                                              style:
+                                                  TextStyle(fontSize: 16.sp)),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(8.0.w),
+                                          child: Text(
+                                              bill.rent.toStringAsFixed(2),
+                                              style:
+                                                  TextStyle(fontSize: 16.sp)),
+                                        ),
+                                      ],
+                                    )),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(height: 16.h),
-                      Card(
-                        elevation: 4.0,
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0.w),
-                          child: Table(
-                            border: TableBorder.all(color: Colors.black),
-                            children: [
-                              TableRow(
-                                decoration:
-                                    BoxDecoration(color: Colors.grey[300]),
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0.w),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.description,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 18.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                    ),
+                    SizedBox(height: 16.h),
+                    Card(
+                      elevation: 4.0,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0.w),
+                        child: Table(
+                          border: TableBorder.all(color: Colors.black),
+                          children: [
+                            TableRow(
+                              decoration:
+                                  BoxDecoration(color: Colors.grey[300]),
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0.w),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.description,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0.w),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.amount,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 18.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0.w),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.amount,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0.w),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.commission,
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0.w),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.commission,
+                                    style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0.w),
-                                    child: Text(
-                                      commission.toStringAsFixed(2),
-                                      style: TextStyle(fontSize: 16.sp),
-                                    ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0.w),
+                                  child: Text(
+                                    commission.toStringAsFixed(2),
+                                    style: TextStyle(fontSize: 16.sp),
                                   ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0.w),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.rent,
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0.w),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.rent,
+                                    style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0.w),
-                                    child: Text(
-                                      rent.toStringAsFixed(2),
-                                      style: TextStyle(fontSize: 16.sp),
-                                    ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0.w),
+                                  child: Text(
+                                    rent.toStringAsFixed(2),
+                                    style: TextStyle(fontSize: 16.sp),
                                   ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0.w),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.fare,
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0.w),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.fare,
+                                    style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0.w),
-                                    child: Text(
-                                      fare.toStringAsFixed(2),
-                                      style: TextStyle(fontSize: 16.sp),
-                                    ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0.w),
+                                  child: Text(
+                                    fare.toStringAsFixed(2),
+                                    style: TextStyle(fontSize: 16.sp),
                                   ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0.w),
-                                    child: Text(
-                                      AppLocalizations.of(context)!.total,
-                                      style: TextStyle(
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(8.0.w),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.total,
+                                    style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0.w),
-                                    child: Text(
-                                      (total + fare + commission)
-                                          .toStringAsFixed(2),
-                                      style: TextStyle(fontSize: 16.sp),
-                                    ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8.0.w),
+                                  child: Text(
+                                    (total + fare + commission)
+                                        .toStringAsFixed(2),
+                                    style: TextStyle(fontSize: 16.sp),
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

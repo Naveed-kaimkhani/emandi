@@ -1,8 +1,12 @@
+import 'package:e_mandi/data/hive/ledger_repository.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
 import 'package:e_mandi/style/styling.dart';
+import 'package:e_mandi/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:e_mandi/domain/entities/ledger_model.dart';
 
 class EditLedges extends StatefulWidget {
   const EditLedges({super.key});
@@ -12,15 +16,21 @@ class EditLedges extends StatefulWidget {
 }
 
 class _EditLedgesState extends State<EditLedges> {
-  // Sample data for demonstration
-  final List<Map<String, String>> _ledgers = List.generate(
-    10,
-    (index) => {
-      "sno": "${index + 1}",
-      "name": "Ameer Jan",
-      "amount": "500",
-    },
-  );
+  final LedgerRepository _ledgerRepository = LedgerRepository(); // Initialize the repository
+  List<LedgerModel> _ledgers = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchLedgers();
+  }
+
+  Future<void> _fetchLedgers() async {
+    final ledgers = await _ledgerRepository.getAllLedgers();
+    setState(() {
+      _ledgers = ledgers;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,32 +86,31 @@ class _EditLedgesState extends State<EditLedges> {
                         cells: [
                           DataCell(
                             Text(
-                              _ledgers[index]["sno"]!,
+                              "${index + 1}",
                               style: const TextStyle(fontSize: 16.0),
                             ),
                           ),
                           DataCell(
                             Text(
-                              _ledgers[index]["name"]!,
+                              _ledgers[index].name,
                               style: const TextStyle(fontSize: 16.0),
                             ),
                           ),
                           DataCell(
                             TextField(
                               controller: TextEditingController(
-                                text: _ledgers[index]["amount"],
+                                text: _ledgers[index].amount.toString(),
                               ),
                               decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
-                                isDense:
-                                    true, // Adds padding inside the TextField
+                                isDense: true,
                                 contentPadding: EdgeInsets.all(8),
                               ),
                               style: const TextStyle(fontSize: 16.0),
                               keyboardType: TextInputType.number,
                               onChanged: (value) {
                                 setState(() {
-                                  _ledgers[index]["amount"] = value;
+                                  _ledgers[index] = _ledgers[index].copyWith(amount: double.tryParse(value) ?? _ledgers[index].amount);
                                 });
                               },
                             ),
@@ -109,13 +118,13 @@ class _EditLedgesState extends State<EditLedges> {
                         ],
                       ),
                     ),
-                    dataRowHeight: 50, // Adjust height as needed
-                    headingRowHeight: 60, // Adjust heading height as needed
+                    dataRowHeight: 50,
+                    headingRowHeight: 60,
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 20), // Space between table and buttons
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -129,9 +138,9 @@ class _EditLedgesState extends State<EditLedges> {
                 ),
                 AuthButton(
                   text: AppLocalizations.of(context)!.save,
-                  // text: "Save",
                   fontsize: 20.sp,
                   func: () {
+                    _saveLedgers();
                     FocusManager.instance.primaryFocus?.unfocus();
                   },
                   color: Styling.primaryColor,
@@ -144,5 +153,12 @@ class _EditLedgesState extends State<EditLedges> {
         ),
       ),
     );
+  }
+
+  Future<void> _saveLedgers() async {
+    for (int i = 0; i < _ledgers.length; i++) {
+      await _ledgerRepository.updateLedger(i, _ledgers[i]);
+    }
+    utils.toastMessage("ledger updated");
   }
 }

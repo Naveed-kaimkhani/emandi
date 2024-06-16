@@ -2,11 +2,13 @@ import 'package:e_mandi/bloc/bloc/login_bloc.dart';
 import 'package:e_mandi/data/firebase/firebase_auth_repository.dart';
 import 'package:e_mandi/data/hive/billing_repository.dart';
 import 'package:e_mandi/data/hive/item_repository.dart';
+import 'package:e_mandi/data/hive/ledger_repository.dart';
 import 'package:e_mandi/domain/repositories/auth_repository.dart';
 import 'package:e_mandi/firebase_options.dart';
 import 'package:e_mandi/presentation/billing/create_bill.dart';
 import 'package:e_mandi/presentation/initial/initial_list.dart';
 import 'package:e_mandi/presentation/initial/initial_screen.dart';
+import 'package:e_mandi/presentation/ledges/ledges_screen.dart';
 import 'package:e_mandi/utils/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -69,9 +71,7 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: CreateBillFromScratch(
-                  billingRepository: getIt(),
-                ),
+                home: LedgesScreen(),
                 onGenerateRoute: Routes.onGenerateRoute,
               );
             },
@@ -87,6 +87,7 @@ void servicesLocator() {
       FirebaseAuthRepository()); // Registering AuthHttpApiRepository as a lazy singleton for AuthApiRepository
 
   getIt.registerLazySingleton<ItemRepository>(() => ItemRepository());
+ getIt.registerLazySingleton<LedgerRepository>(() => LedgerRepository());
 
   getIt.registerLazySingleton<BillingRepository>(() => BillingRepository());
 }

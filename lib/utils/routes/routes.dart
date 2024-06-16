@@ -38,7 +38,7 @@ class Routes {
         return _buildRoute( CreateBillFromInitialList(), settings);
 
       case RoutesName.viewLedges:
-        return _buildRoute(const ViewLedges(), settings);
+        return _buildRoute( ViewLedges(ledgerRepository: getIt(),), settings);
       case RoutesName.editLedges:
         return _buildRoute(const EditLedges(), settings);
 

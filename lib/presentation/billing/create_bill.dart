@@ -36,7 +36,50 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
   String? _selectedContainer;
   int? _itemCount;
 
-  List<ItemModel> _items = [];
+  final List<ItemModel> _items = [
+    ItemModel(
+      name: "naveed",
+      selectedItem: "amgoooo",
+      selectedContainer: "shopper",
+      itemCount: 5,
+      rent: 10.0,
+    ),
+    ItemModel(
+      name: "naveed",
+      selectedItem: "amgoooo",
+      selectedContainer: "shopper",
+      itemCount: 5,
+      rent: 10.0,
+    ),
+    ItemModel(
+      name: "naveed",
+      selectedItem: "amgoooo",
+      selectedContainer: "shopper",
+      itemCount: 5,
+      rent: 10.0,
+    ),
+    ItemModel(
+      name: "naveed",
+      selectedItem: "amgoooo",
+      selectedContainer: "shopper",
+      itemCount: 5,
+      rent: 10.0,
+    ),
+    ItemModel(
+      name: "naveed",
+      selectedItem: "amgoooo",
+      selectedContainer: "shopper",
+      itemCount: 5,
+      rent: 10.0,
+    ),
+    ItemModel(
+      name: "naveed",
+      selectedItem: "amgoooo",
+      selectedContainer: "shopper",
+      itemCount: 5,
+      rent: 10.0,
+    ),
+  ];
 
   @override
   void dispose() {
@@ -52,28 +95,28 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
   }
 
   void _generateBill() {
-    if (_formKey.currentState!.validate() &&
-            _selectedItem != null &&
-            _selectedContainer != null &&
-            _itemCount != null
-        // true
-        ) {
-      final newItem = ItemModel(
-        name: _nameController.text,
-        selectedItem: _selectedItem!,
-        selectedContainer: _selectedContainer!,
-        itemCount: _itemCount!,
-        rent: double.parse(_rentController.text),
+    if (
+        // _formKey.currentState!.validate() &&
+        //       _selectedItem != null &&
+        //       _selectedContainer != null &&
+        //       _itemCount != null
+        true) {
+      // final newItem = ItemModel(
+      //   name: _nameController.text,
+      //   selectedItem: _selectedItem!,
+      //   selectedContainer: _selectedContainer!,
+      //   itemCount: _itemCount!,
+      //   rent: double.parse(_rentController.text),
 
-        // name: "naveed",
-        // selectedItem: "amgoooo",
-        // selectedContainer: "shopper",
-        // itemCount: 5,
-        // rent: 10.0,
-      );
-      setState(() {
-        _items.add(newItem);
-      });
+      //   // name: "naveed",
+      //   // selectedItem: "amgoooo",
+      //   // selectedContainer: "shopper",
+      //   // itemCount: 5,
+      //   // rent: 10.0,
+      // );
+      // setState(() {
+      //   _items.add(newItem);
+      // });
       Navigator.push(
         context,
         MaterialPageRoute(
