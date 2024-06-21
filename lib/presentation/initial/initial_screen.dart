@@ -1,9 +1,12 @@
-import 'package:e_mandi/data/hive/item_repository.dart';
+import 'package:e_mandi/domain/repositories/item_repository.dart';
 import 'package:e_mandi/domain/entities/item_model.dart';
 import 'package:e_mandi/presentation/initial/container_dropdown.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
 import 'package:e_mandi/presentation/widgets/input_field.dart';
+import 'package:e_mandi/presentation/widgets/item_added_dialogue.dart';
+import 'package:e_mandi/utils/custom_loader.dart';
 import 'package:e_mandi/utils/routes/routes_name.dart';
+import 'package:e_mandi/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../style/styling.dart';
@@ -52,13 +55,23 @@ class _InitialScreenState extends State<InitialScreen> {
         itemCount: _itemCount!,
         rent: double.parse(_rentController.text),
       );
-
+      LoaderOverlay.show(context);
       await widget.itemRepository.addItem(billing);
+      LoaderOverlay.hide();
+      showDialogue();
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Enter")),
-      );
+      utils.flushBarErrorMessage(
+          AppLocalizations.of(context)!.enterAllDetail, context);
     }
+  }
+
+  showDialogue() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const ItemAddedDialogue();
+      },
+    );
   }
 
   @override
@@ -102,7 +115,7 @@ class _InitialScreenState extends State<InitialScreen> {
                     obsecureText: false,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Enter name";
+                        return AppLocalizations.of(context)!.enterUserName;
                       } else {
                         return null;
                       }
@@ -123,7 +136,7 @@ class _InitialScreenState extends State<InitialScreen> {
                       AppLocalizations.of(context)!.potato,
                       AppLocalizations.of(context)!.onion,
                     ],
-                    hintText: 'Select fruit',
+                    hintText: AppLocalizations.of(context)!.itemName,
                     displayText: (value) => value,
                   ),
                   ContainerDropDown<String>(
@@ -133,8 +146,12 @@ class _InitialScreenState extends State<InitialScreen> {
                         _selectedContainer = value;
                       });
                     },
-                    items: const ['Box', 'Bag', 'Crate'],
-                    hintText: 'Select Container',
+                    items: [
+                      AppLocalizations.of(context)!.box,
+                      AppLocalizations.of(context)!.bag,
+                      AppLocalizations.of(context)!.crate,
+                    ],
+                    hintText: AppLocalizations.of(context)!.itemContainer,
                     displayText: (value) => value,
                   ),
                   ContainerDropDown<int>(
@@ -145,7 +162,7 @@ class _InitialScreenState extends State<InitialScreen> {
                       });
                     },
                     items: const [2, 4, 6, 8, 10],
-                    hintText: 'Select Count',
+                    hintText: AppLocalizations.of(context)!.itemCount,
                     displayText: (value) => value.toString(),
                   ),
                   InputField(
@@ -154,10 +171,11 @@ class _InitialScreenState extends State<InitialScreen> {
                     focusNode: rentFocusNode,
                     nextNode: rentFocusNode,
                     controller: _rentController,
+                    keyboardType: TextInputType.number,
                     obsecureText: false,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Enter Rent";
+                        return AppLocalizations.of(context)!.enterRent;
                       } else {
                         return null;
                       }
@@ -182,14 +200,14 @@ class _InitialScreenState extends State<InitialScreen> {
                                 _itemCount != null) {
                               _addItem();
                             } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text("Enter")),
-                              );
+                              utils.flushBarErrorMessage(
+                                  AppLocalizations.of(context)!.enterAllDetail,
+                                  context);
                             }
                           },
                           color: Styling.primaryColor),
                       AuthButton(
-                        fontsize: 20.sp,
+                          fontsize: 20.sp,
                           height: 56.h,
                           widht: 200.w,
                           text: AppLocalizations.of(context)!.viewList,

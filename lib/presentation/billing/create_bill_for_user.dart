@@ -12,15 +12,16 @@ import '../../style/styling.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class CreateBillFromScratch extends StatefulWidget {
+class CreateBillForAUser extends StatefulWidget {
+  final String? name;
   final BillingRepository billingRepository;
-  const CreateBillFromScratch({super.key, required this.billingRepository});
+  const CreateBillForAUser({super.key, required this.billingRepository , required this.name});
 
   @override
-  State<CreateBillFromScratch> createState() => _CreateBillFromScratchState();
+  State<CreateBillForAUser> createState() => _CreateBillForAUserState();
 }
 
-class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
+class _CreateBillForAUserState extends State<CreateBillForAUser> {
   final _formKey = GlobalKey<FormState>();
   FocusNode nameFocusNode = FocusNode();
   FocusNode rateFocusNode = FocusNode();
@@ -145,20 +146,20 @@ class _CreateBillFromScratchState extends State<CreateBillFromScratch> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 10.h),
-                  InputField(
-                    hint_text: AppLocalizations.of(context)!.enterUserName,
-                    currentNode: nameFocusNode,
-                    focusNode: nameFocusNode,
-                    nextNode: fruitFocusNode,
-                    controller: _nameController,
-                    obsecureText: false,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return AppLocalizations.of(context)!.enterUserName;
-                      }
-                      return null;
-                    },
-                  ),
+                  // InputField(
+                  //   hint_text: AppLocalizations.of(context)!.enterUserName,
+                  //   currentNode: nameFocusNode,
+                  //   focusNode: nameFocusNode,
+                  //   nextNode: fruitFocusNode,
+                  //   controller: _nameController,
+                  //   obsecureText: false,
+                  //   validator: (value) {
+                  //     if (value == null || value.isEmpty) {
+                  //       return AppLocalizations.of(context)!.enterUserName;
+                  //     }
+                  //     return null;
+                  //   },
+                  // ),
                   ContainerDropDown<String>(
                     selectedItem: _selectedItem,
                     onSelected: (value) {

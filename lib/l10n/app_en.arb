@@ -56,5 +56,14 @@
     "total":"total",
     "description":"Description",
     "share":"share",
-    "cancel":"Cancel"
+    "cancel":"Cancel",
+    "box":"Box",
+    "bag":"Bag",
+    "crate":"Crate",
+    "enterAllDetail":"Enter All detail",
+    "enterItemRates":"Enter item rates",
+    "enterPercentage":"Enter percentage",
+    "enterRent":"Enter rent",
+    "noData":"No data",
+    "itemAdded":"Item Added"
 }

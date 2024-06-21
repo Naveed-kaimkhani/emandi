@@ -1,14 +1,20 @@
 import 'package:e_mandi/bloc/bloc/login_bloc.dart';
 import 'package:e_mandi/data/firebase/firebase_auth_repository.dart';
-import 'package:e_mandi/data/hive/billing_repository.dart';
-import 'package:e_mandi/data/hive/item_repository.dart';
-import 'package:e_mandi/data/hive/ledger_repository.dart';
+import 'package:e_mandi/domain/repositories/billing_repository.dart';
+import 'package:e_mandi/domain/repositories/item_repository.dart';
+import 'package:e_mandi/domain/repositories/ledger_repository.dart';
 import 'package:e_mandi/domain/repositories/auth_repository.dart';
+import 'package:e_mandi/data/hive/hive_billing_repository.dart';
+import 'package:e_mandi/data/hive/hive_item_repository.dart';
+import 'package:e_mandi/data/hive/hive_ledger_repository.dart';
 import 'package:e_mandi/firebase_options.dart';
+import 'package:e_mandi/presentation/auth/login_screen.dart';
 import 'package:e_mandi/presentation/billing/create_bill.dart';
+import 'package:e_mandi/presentation/category/category_screen.dart';
 import 'package:e_mandi/presentation/initial/initial_list.dart';
 import 'package:e_mandi/presentation/initial/initial_screen.dart';
 import 'package:e_mandi/presentation/ledges/ledges_screen.dart';
+import 'package:e_mandi/presentation/splash/splash_screen.dart';
 import 'package:e_mandi/utils/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -32,9 +38,9 @@ void main() async {
   Hive.init(dir.path);
   // // await Hive.openBox<Map>('billingBox');
 
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   servicesLocator(); // Initializing service locator for dependency injection
 
   runApp(MyApp());
@@ -50,7 +56,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) =>
-              LoginBloc(firebaseAuthRepository: FirebaseAuthRepository()),
+              LoginBloc(firebaseAuthRepository: getIt()),
         )
       ],
       child: BlocBuilder<LocalizationBloc, LocalizationState>(
@@ -71,7 +77,7 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: LedgesScreen(),
+                home:SplashView(),
                 onGenerateRoute: Routes.onGenerateRoute,
               );
             },
@@ -86,8 +92,8 @@ void servicesLocator() {
   getIt.registerLazySingleton<AuthRepository>(() =>
       FirebaseAuthRepository()); // Registering AuthHttpApiRepository as a lazy singleton for AuthApiRepository
 
-  getIt.registerLazySingleton<ItemRepository>(() => ItemRepository());
- getIt.registerLazySingleton<LedgerRepository>(() => LedgerRepository());
+  getIt.registerLazySingleton<ItemRepository>(() => HiveItemRepository());
+  getIt.registerLazySingleton<LedgerRepository>(() => HiveLedgerRepository());
 
-  getIt.registerLazySingleton<BillingRepository>(() => BillingRepository());
+  getIt.registerLazySingleton<BillingRepository>(() => HiveBillingRepository());
 }

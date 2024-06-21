@@ -1,14 +1,16 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 import 'package:e_mandi/domain/entities/item_model.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
+import 'package:e_mandi/utils/custom_loader.dart';
 import 'package:e_mandi/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:gallery_saver/gallery_saver.dart';
-import 'package:screenshot/screenshot.dart';
 import 'package:share/share.dart';
 import '../../style/styling.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -16,7 +18,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class InvoiceScreen extends StatelessWidget {
   final List<ItemModel> bills;
   final String name;
-  final ScreenshotController screenshotController = ScreenshotController();
+  // final ScreenshotController screenshotController = ScreenshotController();
+  final GlobalKey _globalKey = GlobalKey();
 
   InvoiceScreen({super.key, required this.bills, required this.name});
 
@@ -32,6 +35,7 @@ class InvoiceScreen extends StatelessWidget {
 
     Future<void> saveAndShareReceipt(Uint8List image,
         {bool isPrint = false}) async {
+      LoaderOverlay.show(context);
       final directory = await getApplicationDocumentsDirectory();
       String uniqueFileName =
           'invoice_${DateTime.now().millisecondsSinceEpoch}.png';
@@ -40,11 +44,28 @@ class InvoiceScreen extends StatelessWidget {
 
       // Save to gallery
       await GallerySaver.saveImage(imagePath.path);
+      LoaderOverlay.hide();
       utils.toastMessage("Image saved in gallary");
       if (!isPrint) {
         // Share via WhatsApp
         await Share.shareFiles([imagePath.path], text: 'Here is your invoice');
       }
+    }
+
+    Future<Uint8List?> _capturePng() async {
+      try {
+        LoaderOverlay.show(context);
+        RenderRepaintBoundary boundary = _globalKey.currentContext!
+            .findRenderObject() as RenderRepaintBoundary;
+        ui.Image image = await boundary.toImage(pixelRatio: 3.0);
+        ByteData? byteData =
+            await image.toByteData(format: ui.ImageByteFormat.png);
+        LoaderOverlay.hide();
+        return byteData?.buffer.asUint8List();
+      } catch (e) {
+        print(e);
+      }
+      return null;
     }
 
     return Scaffold(
@@ -62,8 +83,8 @@ class InvoiceScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Screenshot(
-        controller: screenshotController,
+      body: RepaintBoundary(
+        key: _globalKey,
         child: Container(
           color: Colors.white,
           padding: EdgeInsets.all(16.0.w),
@@ -302,8 +323,11 @@ class InvoiceScreen extends StatelessWidget {
               widht: 150.w,
               text: AppLocalizations.of(context)!.print,
               func: () async {
-                final image = await screenshotController.capture();
+                print("print called");
+                // final image = await screenshotController.capture();
+                final image = await _capturePng();
                 if (image != null) {
+                  print("in if");
                   await saveAndShareReceipt(image, isPrint: true);
                 }
               },
@@ -316,7 +340,8 @@ class InvoiceScreen extends StatelessWidget {
               text: AppLocalizations.of(context)!.share,
               // text: "Share",
               func: () async {
-                final image = await screenshotController.capture();
+                // final image = await screenshotController.capture();
+                final image = await _capturePng();
                 if (image != null) {
                   await saveAndShareReceipt(image);
                 }

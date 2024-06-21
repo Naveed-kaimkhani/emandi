@@ -1,7 +1,8 @@
 import 'package:e_mandi/domain/entities/ledger_model.dart';
-import 'package:e_mandi/data/hive/ledger_repository.dart';
+import 'package:e_mandi/domain/repositories/ledger_repository.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
 import 'package:e_mandi/style/styling.dart';
+import 'package:e_mandi/utils/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +19,6 @@ class ViewLedges extends StatefulWidget {
 class _ViewLedgesState extends State<ViewLedges> {
   late Future<List<LedgerModel>> _ledgersFuture;
 
-
   Future<void> _showAddNewLedgerDialog() async {
     final _formKey = GlobalKey<FormState>();
     String name = '';
@@ -28,6 +28,8 @@ class _ViewLedgesState extends State<ViewLedges> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          // icon: Icon(Icons.add),
+          backgroundColor: Styling.textfieldsColor,
           title: Text(AppLocalizations.of(context)!.addNew),
           content: Form(
             key: _formKey,
@@ -91,6 +93,7 @@ class _ViewLedgesState extends State<ViewLedges> {
       },
     );
   }
+
   Future<void> _addNewLedger(String name, double amount) async {
     final newLedger = LedgerModel(name: name, amount: amount);
     await widget.ledgerRepository.addLedger(newLedger);
@@ -98,6 +101,7 @@ class _ViewLedgesState extends State<ViewLedges> {
       _ledgersFuture = widget.ledgerRepository.getAllLedgers();
     });
   }
+
   @override
   void initState() {
     super.initState();
@@ -204,14 +208,18 @@ class _ViewLedgesState extends State<ViewLedges> {
               children: [
                 AuthButton(
                     text: AppLocalizations.of(context)!.addNew,
-                    func: () {},
+                    func: () {
+                      _showAddNewLedgerDialog();
+                    },
                     fontsize: 20.sp,
                     color: Styling.primaryColor,
                     height: 49.h,
                     widht: 131.w),
                 AuthButton(
                     text: AppLocalizations.of(context)!.edit,
-                    func: () {},
+                    func: () {
+                      Navigator.pushNamed(context, RoutesName.editLedges);
+                    },
                     fontsize: 20.sp,
                     color: Styling.primaryColor,
                     height: 49.h,

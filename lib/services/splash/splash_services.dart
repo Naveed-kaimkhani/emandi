@@ -14,7 +14,7 @@ class SplashServices {
       if (SessionController.isLogin ?? false) {
         Timer(
           const Duration(seconds: 2),
-          () => Navigator.pushNamedAndRemoveUntil(context, RoutesName.home, (route) => false),
+          () => Navigator.pushNamedAndRemoveUntil(context, RoutesName.categoryScreen, (route) => false),
         );
       } else {
         Timer(

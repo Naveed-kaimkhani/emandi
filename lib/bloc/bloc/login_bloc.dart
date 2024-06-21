@@ -45,7 +45,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     try {
       final user = await firebaseAuthRepository.loginWithGoogle();
-      // await SessionController().saveUserInPreference(user);
+      await SessionController().saveUserInPreference(user);
       // await SessionController().getUserFromPreference();
       // LoaderOverlay.hide();
       emit(state.copyWith(

@@ -1,5 +1,7 @@
+import 'package:e_mandi/style/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../services/splash/splash_services.dart'; // Importing the SplashServices class from the services/splash/splash_services.dart file
 
 
@@ -26,12 +28,11 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text(
-          // Displays the localized text for the splash screen
-          // AppLocalizations.of(context)!.splashScreen,
-          "splashhh",
-          style: Theme.of(context).textTheme.displayMedium, // Applies the displayMedium text style from the current theme
-        ),
+        child:   Image.asset(
+                  Images.logo_en,
+                  height: 200.h,
+                  width: 200.w,
+                ),
       ),
     );
   }

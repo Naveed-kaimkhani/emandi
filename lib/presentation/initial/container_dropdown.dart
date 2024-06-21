@@ -9,6 +9,7 @@ class ContainerDropDown<T> extends StatelessWidget {
   final String Function(T) displayText;
   final T? selectedItem;
 
+  // ignore: use_super_parameters
   const ContainerDropDown({
     Key? key,
     required this.items,

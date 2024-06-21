@@ -17,7 +17,7 @@ class LoaderOverlay {
   }
 
   static void hide() {
-    print("hidee called");
+    // print("hidee called");
     _overlayEntry?.remove();
     _overlayEntry = null;
   }

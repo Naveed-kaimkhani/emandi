@@ -20,7 +20,11 @@ class Routes {
         return _buildRoute(const LoginScreen(), settings);
 
       case RoutesName.initialScreen:
-        return _buildRoute(InitialScreen(itemRepository: getIt(),), settings);
+        return _buildRoute(
+            InitialScreen(
+              itemRepository: getIt(),
+            ),
+            settings);
 
       case RoutesName.billingScreen:
         return _buildRoute(const BillingScreen(), settings);
@@ -29,22 +33,34 @@ class Routes {
         return _buildRoute(const CategoryScreen(), settings);
 
       case RoutesName.initialList:
-        return _buildRoute(const InitialList(), settings);
+        return _buildRoute(InitialList(itemRepository: getIt()), settings);
 
       case RoutesName.createBill:
-        return _buildRoute(CreateBillFromScratch(billingRepository: getIt(),), settings);
+        return _buildRoute(
+            CreateBillFromScratch(
+              billingRepository: getIt(),
+            ),
+            settings);
 
       case RoutesName.createBillFromInitialList:
-        return _buildRoute( CreateBillFromInitialList(), settings);
+        return _buildRoute(
+            CreateBillFromInitialList(
+              itemRepository: getIt(),
+            ),
+            settings);
 
       case RoutesName.viewLedges:
-        return _buildRoute( ViewLedges(ledgerRepository: getIt(),), settings);
+        return _buildRoute(
+            ViewLedges(
+              ledgerRepository: getIt(),
+            ),
+            settings);
       case RoutesName.editLedges:
-        return _buildRoute(const EditLedges(), settings);
+        return _buildRoute( EditLedges(ledgerRepository: getIt(),), settings);
 
       case RoutesName.ledgesScreen:
         return _buildRoute(const LedgesScreen(), settings);
-        
+
       case RoutesName.connectionScreen:
         return _buildRoute(const ConnectionScreen(), settings);
 

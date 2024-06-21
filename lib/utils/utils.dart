@@ -2,12 +2,10 @@ import 'dart:io';
 import 'dart:math';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_mandi/presentation/widgets/no_internet_connection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'dart:ui' as ui;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -20,23 +18,6 @@ class utils {
   }
   
   
- static Future<void> clearImageCache(String imageUrl) async {
-    await CachedNetworkImage.evictFromCache(imageUrl);
-  }
-  static Future<XFile> compressImage(XFile image) async {
-    final dir = await path_provider.getTemporaryDirectory();
-    final targetPath = '${dir.absolute.path}/temp.jpg';
-
-    // converting original image to compress it
-    final result = await FlutterImageCompress.compressAndGetFile(
-      image.path,
-      targetPath,
-      minHeight: 1080, //you can play with this to reduce siz
-      minWidth: 1080,
-      quality: 90, // keep this high to get the original quality of image
-    );
-    return result!;
-  }
 
   static String getCurrentDate() {
     var now = DateTime.now();

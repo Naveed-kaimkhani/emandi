@@ -1,4 +1,4 @@
-import 'package:e_mandi/data/hive/ledger_repository.dart';
+import 'package:e_mandi/domain/repositories/ledger_repository.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
 import 'package:e_mandi/style/styling.dart';
 import 'package:e_mandi/utils/utils.dart';
@@ -9,14 +9,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:e_mandi/domain/entities/ledger_model.dart';
 
 class EditLedges extends StatefulWidget {
-  const EditLedges({super.key});
+  final LedgerRepository ledgerRepository;
+   const EditLedges({super.key, required this.ledgerRepository});
 
   @override
   _EditLedgesState createState() => _EditLedgesState();
 }
 
-class _EditLedgesState extends State<EditLedges> {
-  final LedgerRepository _ledgerRepository = LedgerRepository(); // Initialize the repository
+class _EditLedgesState extends State<EditLedges> {// Initialize the repository
   List<LedgerModel> _ledgers = [];
 
   @override
@@ -26,7 +26,7 @@ class _EditLedgesState extends State<EditLedges> {
   }
 
   Future<void> _fetchLedgers() async {
-    final ledgers = await _ledgerRepository.getAllLedgers();
+    final ledgers = await widget.ledgerRepository.getAllLedgers();
     setState(() {
       _ledgers = ledgers;
     });
@@ -157,7 +157,7 @@ class _EditLedgesState extends State<EditLedges> {
 
   Future<void> _saveLedgers() async {
     for (int i = 0; i < _ledgers.length; i++) {
-      await _ledgerRepository.updateLedger(i, _ledgers[i]);
+      await widget.ledgerRepository.updateLedger(i, _ledgers[i]);
     }
     utils.toastMessage("ledger updated");
   }

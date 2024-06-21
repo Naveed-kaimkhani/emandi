@@ -1,4 +1,3 @@
-
 // }
 
 import 'package:e_mandi/localization/bloc/localization_bloc.dart';
@@ -94,7 +93,7 @@ class Onboarding extends StatelessWidget {
                     fontsize: 20.sp,
                     text: AppLocalizations.of(context)!.getStarted,
                     func: () {
-                      Navigator.pushNamed(context, RoutesName.login);
+                      Navigator.pushNamed(context, RoutesName.categoryScreen);
                     },
                     color: Styling.primaryColor,
                   ),

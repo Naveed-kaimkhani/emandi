@@ -1,24 +1,25 @@
+import 'package:e_mandi/utils/custom_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:e_mandi/style/styling.dart';
-import 'package:e_mandi/data/hive/item_repository.dart';
+import 'package:e_mandi/domain/repositories/item_repository.dart';
 import 'package:e_mandi/domain/entities/item_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InitialList extends StatefulWidget {
-  const InitialList({super.key});
+  final ItemRepository itemRepository;
+  const InitialList({super.key, required this.itemRepository});
 
   @override
   _InitialListState createState() => _InitialListState();
 }
 
 class _InitialListState extends State<InitialList> {
-  final ItemRepository _ItemRepository = ItemRepository();
   late Future<List<ItemModel>> _billsFuture;
 
   @override
   void initState() {
     super.initState();
-    _billsFuture = _ItemRepository.getAllItems();
+    _billsFuture = widget.itemRepository.getAllItems();
   }
 
   @override
@@ -43,11 +44,11 @@ class _InitialListState extends State<InitialList> {
         future: _billsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(child: CustomLoader());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: const Text("No data"));
+            return Center(child: Text(AppLocalizations.of(context)!.noData));
           } else {
             final bills = snapshot.data!;
             return SingleChildScrollView(
@@ -64,18 +65,18 @@ class _InitialListState extends State<InitialList> {
                       label: Text(AppLocalizations.of(context)!.itemName),
                     ),
                     DataColumn(
-                        label: Text(AppLocalizations.of(context)!.itemContainer)),
-                    DataColumn(label: Text(AppLocalizations.of(context)!.itemCount)),
+                        label:
+                            Text(AppLocalizations.of(context)!.itemContainer)),
+                    DataColumn(
+                        label: Text(AppLocalizations.of(context)!.itemCount)),
                   ],
                   rows: bills.map((bill) {
                     return DataRow(
                       cells: [
                         DataCell(Text(bill.name)),
                         DataCell(Text(bill.selectedItem)),
-                        
                         DataCell(Text(bill.selectedContainer)),
                         DataCell(Text(bill.itemCount.toString())),
-                       
                       ],
                     );
                   }).toList(),
