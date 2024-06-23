@@ -1,3 +1,4 @@
+import 'package:e_mandi/bloc/create_bill_bloc/create_bill_bloc.dart';
 import 'package:e_mandi/main.dart';
 import 'package:e_mandi/presentation/auth/login_screen.dart';
 import 'package:e_mandi/presentation/billing/billing_screen.dart';
@@ -38,7 +39,8 @@ class Routes {
       case RoutesName.createBill:
         return _buildRoute(
             CreateBillFromScratch(
-              billingRepository: getIt(),
+              
+              createBillBloc: CreateBillBloc(getIt()),
             ),
             settings);
 

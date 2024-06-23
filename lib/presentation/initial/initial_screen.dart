@@ -1,6 +1,7 @@
 import 'package:e_mandi/domain/repositories/item_repository.dart';
 import 'package:e_mandi/domain/entities/item_model.dart';
 import 'package:e_mandi/presentation/initial/container_dropdown.dart';
+import 'package:e_mandi/presentation/widgets/add_new_item_button.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
 import 'package:e_mandi/presentation/widgets/input_field.dart';
 import 'package:e_mandi/presentation/widgets/item_added_dialogue.dart';
@@ -44,6 +45,7 @@ class _InitialScreenState extends State<InitialScreen> {
   }
 
   void _addItem() async {
+
     if (_formKey.currentState!.validate() &&
         _selectedItem != null &&
         _selectedContainer != null &&
@@ -194,16 +196,7 @@ class _InitialScreenState extends State<InitialScreen> {
                           text: AppLocalizations.of(context)!.submit,
                           func: () {
                             FocusManager.instance.primaryFocus?.unfocus();
-                            if (_formKey.currentState!.validate() &&
-                                _selectedItem != null &&
-                                _selectedContainer != null &&
-                                _itemCount != null) {
-                              _addItem();
-                            } else {
-                              utils.flushBarErrorMessage(
-                                  AppLocalizations.of(context)!.enterAllDetail,
-                                  context);
-                            }
+                            _addItem();
                           },
                           color: Styling.primaryColor),
                       AuthButton(

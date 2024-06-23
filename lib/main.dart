@@ -1,4 +1,6 @@
-import 'package:e_mandi/bloc/bloc/login_bloc.dart';
+import 'package:e_mandi/bloc/billing_bloc/billing_bloc.dart';
+import 'package:e_mandi/bloc/create_bill_bloc/create_bill_bloc.dart';
+import 'package:e_mandi/bloc/login_bloc/login_bloc.dart';
 import 'package:e_mandi/data/firebase/firebase_auth_repository.dart';
 import 'package:e_mandi/domain/repositories/billing_repository.dart';
 import 'package:e_mandi/domain/repositories/item_repository.dart';
@@ -55,8 +57,16 @@ class MyApp extends StatelessWidget {
           create: (_) => LocalizationBloc(),
         ),
         BlocProvider(
-          create: (_) =>
-              LoginBloc(firebaseAuthRepository: getIt()),
+          // create: (_) =>
+          create: (_) => LoginBloc(
+              authRepository:
+                 getIt()), // Updated line
+        ),
+        BlocProvider(
+          create: (_) => ItemBloc(billingRepository: getIt()),
+        ),
+        BlocProvider(
+          create: (_) => CreateBillBloc( getIt()),
         )
       ],
       child: BlocBuilder<LocalizationBloc, LocalizationState>(
@@ -77,7 +87,7 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home:SplashView(),
+                home: CategoryScreen(),
                 onGenerateRoute: Routes.onGenerateRoute,
               );
             },

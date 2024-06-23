@@ -6,7 +6,7 @@ import 'package:e_mandi/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../bloc/bloc/login_bloc.dart';
+import '../../bloc/login_bloc/login_bloc.dart';
 
 /// A widget representing the submit button for the login form.
 class LoginButton extends StatelessWidget {

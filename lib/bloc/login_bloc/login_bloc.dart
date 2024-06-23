@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:e_mandi/data/firebase/firebase_auth_repository.dart';
+import 'package:e_mandi/domain/repositories/auth_repository.dart';
 import 'package:e_mandi/services/session_manager/session_controller.dart';
 import 'package:e_mandi/utils/custom_loader.dart';
 import 'package:e_mandi/utils/enums.dart';
@@ -10,8 +10,8 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  FirebaseAuthRepository firebaseAuthRepository;
-  LoginBloc({required this.firebaseAuthRepository})
+  AuthRepository authRepository;
+  LoginBloc({required this.authRepository})
       : super(const LoginState()) {
     on<EmailChanged>(_onEmailChanged);
     on<PasswordChanged>(_onPasswordChanged);
@@ -44,7 +44,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     ));
 
     try {
-      final user = await firebaseAuthRepository.loginWithGoogle();
+      final user = await authRepository.loginWithGoogle();
       await SessionController().saveUserInPreference(user);
       // await SessionController().getUserFromPreference();
       // LoaderOverlay.hide();
@@ -75,7 +75,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     ));
 
     try {
-      // final user = await firebaseAuthRepository.loginWithEmailPass("email", "password", context);
+      // final user = await authRepository.loginWithEmailPass("email", "password", context);
       // await SessionController().saveUserInPreference(user);
       // await SessionController().getUserFromPreference();
       emit(state.copyWith(postApiStatus: PostApiStatus.success));

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_mandi/bloc/bloc/login_bloc.dart';
+import 'package:e_mandi/bloc/login_bloc/login_bloc.dart';
 import 'package:e_mandi/domain/entities/user.dart';
 import 'package:e_mandi/domain/failures/login_failure.dart';
 import 'package:e_mandi/domain/repositories/auth_repository.dart';

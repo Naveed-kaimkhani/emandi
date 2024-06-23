@@ -6,4 +6,9 @@ sealed class AddItemEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
-class AddNewItem extends AddItemEvent {}
+class AddNewItem extends AddItemEvent {
+  final ItemModel item;
+  AddNewItem({required this.item});
+  @override
+  List<Object> get props => [item];
+}
