@@ -4,7 +4,7 @@ import 'package:e_mandi/presentation/initial/container_dropdown.dart';
 import 'package:e_mandi/presentation/widgets/add_new_item_button.dart';
 import 'package:e_mandi/presentation/widgets/auth_button.dart';
 import 'package:e_mandi/presentation/widgets/input_field.dart';
-import 'package:e_mandi/presentation/widgets/item_added_dialogue.dart';
+import 'package:e_mandi/utils/Dialogues/item_added_popup.dart';
 import 'package:e_mandi/utils/custom_loader.dart';
 import 'package:e_mandi/utils/routes/routes_name.dart';
 import 'package:e_mandi/utils/utils.dart';
@@ -45,7 +45,6 @@ class _InitialScreenState extends State<InitialScreen> {
   }
 
   void _addItem() async {
-
     if (_formKey.currentState!.validate() &&
         _selectedItem != null &&
         _selectedContainer != null &&
@@ -60,20 +59,11 @@ class _InitialScreenState extends State<InitialScreen> {
       LoaderOverlay.show(context);
       await widget.itemRepository.addItem(billing);
       LoaderOverlay.hide();
-      showDialogue();
+      itemAddedDialog(context, AppLocalizations.of(context)!.itemAddedSucc);
     } else {
       utils.flushBarErrorMessage(
           AppLocalizations.of(context)!.enterAllDetail, context);
     }
-  }
-
-  showDialogue() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const ItemAddedDialogue();
-      },
-    );
   }
 
   @override
@@ -104,9 +94,10 @@ class _InitialScreenState extends State<InitialScreen> {
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 40.h,
+                    height: 60.h,
                   ),
                   InputField(
                     hint_text: AppLocalizations.of(context)!.enterUserName,

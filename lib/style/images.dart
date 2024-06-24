@@ -16,6 +16,7 @@ class Images {
   static const String edit = 'assets/edit.png';
   
   static const String ledges = 'assets/ledges.png';
+  static const String done = 'assets/done.json';
   
   static const String view = 'assets/view.png';
   static const String connection = 'assets/connection.png';

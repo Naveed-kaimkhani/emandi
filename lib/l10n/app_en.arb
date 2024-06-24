@@ -65,5 +65,8 @@
     "enterPercentage":"Enter percentage",
     "enterRent":"Enter rent",
     "noData":"No data",
-    "itemAdded":"Item Added"
+    "itemAdded":"Item Added",
+    "youAreNotConnectedToTheInternetPleaseCheckYourInternetConnection":"You are not connected to the internet\nPlease check your internet connection",
+    "tryAgain":"Try Again",
+    "itemAddedSucc":"You have successfully added a new item Thank you"
 }

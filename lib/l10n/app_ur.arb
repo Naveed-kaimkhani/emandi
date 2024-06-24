@@ -64,8 +64,10 @@
     "enterPercentage": "فیصد درج کریں",
     "enterRent": "کرایہ درج کریں",
     "noData":"کوئی مواد نہیں",
-    "itemAdded":"آئٹم شامل کیا"
-
+    "itemAdded":"آئٹم شامل کیا",
+    "youAreNotConnectedToTheInternetPleaseCheckYourInternetConnection":"آپ انٹرنیٹ سے منسلک نہیں ہیں، براہ کرم اپنا انٹرنیٹ کنکشن چیک کریں",
+    "tryAgain":"دوبارہ کوشش کریں",
+    "itemAddedSucc":"آپ نے کامیابی کے ساتھ ایک نیا آئٹم شامل کیا ہے۔ شکریہ۔"
 
 
 }

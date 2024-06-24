@@ -10,12 +10,6 @@ import 'package:e_mandi/data/hive/hive_billing_repository.dart';
 import 'package:e_mandi/data/hive/hive_item_repository.dart';
 import 'package:e_mandi/data/hive/hive_ledger_repository.dart';
 import 'package:e_mandi/firebase_options.dart';
-import 'package:e_mandi/presentation/auth/login_screen.dart';
-import 'package:e_mandi/presentation/billing/create_bill.dart';
-import 'package:e_mandi/presentation/category/category_screen.dart';
-import 'package:e_mandi/presentation/initial/initial_list.dart';
-import 'package:e_mandi/presentation/initial/initial_screen.dart';
-import 'package:e_mandi/presentation/ledges/ledges_screen.dart';
 import 'package:e_mandi/presentation/splash/splash_screen.dart';
 import 'package:e_mandi/utils/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -28,8 +22,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-
-import 'presentation/onboarding/onboarding.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // GetIt is a package used for service locator or to manage dependency injection
@@ -66,7 +58,7 @@ class MyApp extends StatelessWidget {
           create: (_) => ItemBloc(billingRepository: getIt()),
         ),
         BlocProvider(
-          create: (_) => CreateBillBloc( getIt()),
+          create: (_) => CreateBillBloc(billingRepository: getIt()),
         )
       ],
       child: BlocBuilder<LocalizationBloc, LocalizationState>(
@@ -87,7 +79,7 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: CategoryScreen(),
+                home: SplashView(),
                 onGenerateRoute: Routes.onGenerateRoute,
               );
             },

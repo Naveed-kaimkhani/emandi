@@ -6,6 +6,7 @@ import 'package:e_mandi/presentation/widgets/login_button.dart';
 import 'package:e_mandi/style/images.dart';
 import 'package:e_mandi/style/styling.dart';
 import 'package:e_mandi/utils/custom_loader.dart';
+import 'package:e_mandi/utils/utils.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,12 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    utils.checkConnectivity(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 20),
+               SizedBox(height: 16.h),
                 InputField(
                   hint_text: AppLocalizations.of(context)!.password,
                   currentNode: passwordFocusNode,

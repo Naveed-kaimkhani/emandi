@@ -64,7 +64,12 @@ dependencies:
   gallery_saver:
 dev_dependencies:
   hive_generator: ^2.0.1
-  build_runner: ^2.4.11
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo_en.png"
   flutter_test:
     sdk: flutter
 

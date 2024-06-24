@@ -40,7 +40,7 @@ class Routes {
         return _buildRoute(
             CreateBillFromScratch(
               
-              createBillBloc: CreateBillBloc(getIt()),
+              createBillBloc: CreateBillBloc(billingRepository:getIt()),
             ),
             settings);
 

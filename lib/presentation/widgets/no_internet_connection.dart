@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:lottie/lottie.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../style/styling.dart';
 
 class NoInternetCnnection extends StatefulWidget {
@@ -43,8 +44,8 @@ class _NoInternetCnnectionState extends State<NoInternetCnnection> {
             SizedBox(
               height: 14.h,
             ),
-            const Text(
-              "You are not connected to the internet\nPlease check your internet connection",
+             Text(
+            AppLocalizations.of(context)!.youAreNotConnectedToTheInternetPleaseCheckYourInternetConnection,
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -68,7 +69,7 @@ class _NoInternetCnnectionState extends State<NoInternetCnnection> {
                 ),
                 child: Center(
                   child: Text(
-                    "Try Again",
+                    AppLocalizations.of(context)!.tryAgain,
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: Colors.white,

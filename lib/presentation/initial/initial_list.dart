@@ -1,3 +1,4 @@
+import 'package:e_mandi/presentation/widgets/no_data_found.dart';
 import 'package:e_mandi/utils/custom_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:e_mandi/style/styling.dart';
@@ -48,7 +49,7 @@ class _InitialListState extends State<InitialList> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text(AppLocalizations.of(context)!.noData));
+            return NoDataFoundScreen(text: AppLocalizations.of(context)!.noData,);
           } else {
             final bills = snapshot.data!;
             return SingleChildScrollView(
