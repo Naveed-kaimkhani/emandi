@@ -10,7 +10,9 @@ import 'package:e_mandi/data/hive/hive_billing_repository.dart';
 import 'package:e_mandi/data/hive/hive_item_repository.dart';
 import 'package:e_mandi/data/hive/hive_ledger_repository.dart';
 import 'package:e_mandi/firebase_options.dart';
+import 'package:e_mandi/presentation/initial/initial_screen.dart';
 import 'package:e_mandi/presentation/splash/splash_screen.dart';
+import 'package:e_mandi/services/splash/splash_services.dart';
 import 'package:e_mandi/utils/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -50,9 +52,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           // create: (_) =>
-          create: (_) => LoginBloc(
-              authRepository:
-                 getIt()), // Updated line
+          create: (_) => LoginBloc(authRepository: getIt()), // Updated line
         ),
         BlocProvider(
           create: (_) => ItemBloc(billingRepository: getIt()),

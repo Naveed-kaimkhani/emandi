@@ -19,13 +19,13 @@ class SplashServices {
       } else {
         Timer(
           const Duration(seconds: 2),
-          () => Navigator.pushNamedAndRemoveUntil(context, RoutesName.login, (route) => false),
+          () => Navigator.pushNamedAndRemoveUntil(context, RoutesName.onboarding, (route) => false),
         );
       }
     }).onError((error, stackTrace) {
       Timer(
         const Duration(seconds: 2),
-        () => Navigator.pushNamedAndRemoveUntil(context, RoutesName.login, (route) => false),
+        () => Navigator.pushNamedAndRemoveUntil(context, RoutesName.onboarding, (route) => false),
       );
     });
   }

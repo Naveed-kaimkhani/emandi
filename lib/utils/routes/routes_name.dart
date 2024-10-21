@@ -10,6 +10,7 @@ class RoutesName {
   static const String editLedges = 'editLedges';
   static const String ledgesScreen = 'ledgesScreen';
   static const String categoryScreen = 'categoryScreen';
+  static const String onboarding = 'Onboarding';
   
   static const String connectionScreen = 'connectionScreen';
 }

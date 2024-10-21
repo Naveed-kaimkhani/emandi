@@ -10,4 +10,9 @@ class AddItemEvent extends CreateBillEvent {
 
 class ResetFieldsEvent extends CreateBillEvent {}
 
-class GenerateBillEvent extends CreateBillEvent {}
+class GenerateBillEvent extends CreateBillEvent {
+    final ItemModel Item;
+
+  GenerateBillEvent(this.Item);
+
+}

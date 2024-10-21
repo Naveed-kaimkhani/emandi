@@ -11,6 +11,7 @@ import 'package:e_mandi/presentation/initial/initial_screen.dart';
 import 'package:e_mandi/presentation/ledges/edit_ledges.dart';
 import 'package:e_mandi/presentation/ledges/ledges_screen.dart';
 import 'package:e_mandi/presentation/ledges/view_ledges.dart';
+import 'package:e_mandi/presentation/onboarding/onboarding.dart';
 import 'package:e_mandi/utils/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,8 @@ class Routes {
 
       case RoutesName.billingScreen:
         return _buildRoute(const BillingScreen(), settings);
+      case RoutesName.onboarding:
+        return _buildRoute(const Onboarding(), settings);
 
       case RoutesName.categoryScreen:
         return _buildRoute(const CategoryScreen(), settings);
@@ -39,8 +42,7 @@ class Routes {
       case RoutesName.createBill:
         return _buildRoute(
             CreateBillFromScratch(
-              
-              createBillBloc: CreateBillBloc(billingRepository:getIt()),
+              createBillBloc: CreateBillBloc(billingRepository: getIt()),
             ),
             settings);
 
@@ -58,7 +60,11 @@ class Routes {
             ),
             settings);
       case RoutesName.editLedges:
-        return _buildRoute( EditLedges(ledgerRepository: getIt(),), settings);
+        return _buildRoute(
+            EditLedges(
+              ledgerRepository: getIt(),
+            ),
+            settings);
 
       case RoutesName.ledgesScreen:
         return _buildRoute(const LedgesScreen(), settings);

@@ -5,7 +5,7 @@ import 'package:e_mandi/bloc/create_bill_bloc/create_bill_states.dart';
 import 'package:e_mandi/domain/entities/item_model.dart';
 import 'package:e_mandi/domain/repositories/billing_repository.dart';
 
-import '../../presentation/billing/invoice_screen.dart';
+import '../../presentation/billing/invoice_initial_list.dart';
 
 class CreateBillBloc extends Bloc<CreateBillEvent, CreateBillState> {
   final BillingRepository billingRepository;
@@ -30,7 +30,8 @@ class CreateBillBloc extends Bloc<CreateBillEvent, CreateBillState> {
   void _onGenerateBillEvent(GenerateBillEvent event, Emitter<CreateBillState> emit) async {
     emit(BillFormInProgress());
     try {
-      await billingRepository.addBill(_items);
+      _items.add(event.Item);
+      // await billingRepository.addBill(event.Item);
       
       emit(BillFormSuccess(_items));
     } catch (e) {

@@ -5,6 +5,8 @@ class ItemModel {
   int itemCount;
   double rent;
   String? percentage;
+  int? portrages;
+  int? itemRates;
 
   ItemModel({
     required this.name,
@@ -13,6 +15,8 @@ class ItemModel {
     required this.itemCount,
     required this.rent,
     this.percentage,
+    this.portrages,
+    this.itemRates,
   });
 
   // Convert a ItemModel into a Map.
@@ -25,6 +29,8 @@ class ItemModel {
       'rent': rent,
       'percentage':
           percentage ?? "", // Default to empty string if percentage is null
+      'portrages': portrages ?? 0,
+      'itemRates': itemRates ?? 0,
     };
   }
 
@@ -37,6 +43,8 @@ class ItemModel {
       itemCount: json['itemCount'],
       rent: json['rent'].toDouble(), // Convert rent to double
       percentage: json['percentage'], // Assign percentage directly
+      portrages: json['portrages'], // Assign portrages directly
+      itemRates: json['itemRates'], // Assign itemRates directly
     );
   }
 }

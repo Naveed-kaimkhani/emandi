@@ -113,7 +113,7 @@ class _CreateBillFromInitialListState extends State<CreateBillFromInitialList> {
                                             builder: (context) =>
                                                 CreateBillForAUser(
                                                   billingRepository: getIt(),
-                                                  name: items[index].name,
+                                                  itemModel: items[index],
                                                 )),
                                       );
                                     },

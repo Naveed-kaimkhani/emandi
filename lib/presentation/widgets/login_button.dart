@@ -49,7 +49,7 @@ class LoginButton extends StatelessWidget {
           // Navigator.pushNamedAndRemoveUntil(
           //     context, RoutesName.home, (route) => false);
           LoaderOverlay.hide();
-          utils.flushBarErrorMessage("hogyaa bhaiiiiiiii", context);
+          // utils.flushBarErrorMessage("hogyaa bhaiiiiiiii", context);
         }
       },
       child: BlocBuilder<LoginBloc, LoginState>(

@@ -39,14 +39,14 @@ itemAddedDialog(context, String text) async {
               SizedBox(
                 height: 10.h,
               ),
-              Text(
-                AppLocalizations.of(context)!.itemAddedSucc,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              // Text(
+              //   AppLocalizations.of(context)!.itemAddedSucc,
+              //   textAlign: TextAlign.center,
+              //   style: TextStyle(
+              //     fontSize: 14.sp,
+              //     fontWeight: FontWeight.w600,
+              //   ),
+              // ),
               SizedBox(
                 height: 10.h,
               ),
