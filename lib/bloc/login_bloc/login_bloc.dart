@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:e_mandi/domain/repositories/auth_repository.dart';
 import 'package:e_mandi/services/session_manager/session_controller.dart';
-import 'package:e_mandi/utils/custom_loader.dart';
 import 'package:e_mandi/utils/enums.dart';
-import 'package:e_mandi/utils/utils.dart';
 import 'package:equatable/equatable.dart';
 
 part 'login_event.dart';

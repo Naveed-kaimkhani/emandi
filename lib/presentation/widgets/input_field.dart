@@ -12,11 +12,14 @@ class InputField extends StatelessWidget {
   FocusNode? focusNode;
   IconData? icon;
   Widget? preicon;
+  
+  Widget? suffixIcon;
   dynamic validator;
   TextInputType? keyboardType;
   Function()? onIconPress;
   TextEditingController? controller;
   Function(String)? onChanged;
+
 
   InputField({
     super.key,
@@ -28,6 +31,7 @@ class InputField extends StatelessWidget {
     this.validator,
     this.icon,
     this.preicon,
+    this.suffixIcon,
     this.onIconPress,
     this.obsecureText,
     this.keyboardType,
@@ -52,6 +56,7 @@ class InputField extends StatelessWidget {
         onEditingComplete: () =>
             utils.fieldFocusChange(context, currentNode!, nextNode!),
         onChanged: onChanged,
+        // suffixIcon: suffixIcon,
         decoration: InputDecoration(
           fillColor: Styling.textfieldsColor,
           filled: true,
@@ -74,13 +79,7 @@ class InputField extends StatelessWidget {
             fontSize: 17.sp,
           ),
           prefixIcon: preicon,
-          suffixIcon: InkWell(
-            onTap: onIconPress,
-            child: Icon(
-              icon,
-              color: const Color.fromARGB(255, 65, 61, 61),
-            ),
-          ),
+          suffixIcon: suffixIcon,
         ),
         validator: validator,
       ),

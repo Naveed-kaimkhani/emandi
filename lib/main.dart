@@ -10,6 +10,7 @@ import 'package:e_mandi/data/hive/hive_billing_repository.dart';
 import 'package:e_mandi/data/hive/hive_item_repository.dart';
 import 'package:e_mandi/data/hive/hive_ledger_repository.dart';
 import 'package:e_mandi/firebase_options.dart';
+import 'package:e_mandi/presentation/category/category_screen.dart';
 import 'package:e_mandi/presentation/initial/initial_screen.dart';
 import 'package:e_mandi/presentation/splash/splash_screen.dart';
 import 'package:e_mandi/services/splash/splash_services.dart';
@@ -79,7 +80,7 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: SplashView(),
+                home: CategoryScreen(),
                 onGenerateRoute: Routes.onGenerateRoute,
               );
             },
