@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate,
                 ],
-                home: CategoryScreen(),
+                home: SplashView(),
                 onGenerateRoute: Routes.onGenerateRoute,
               );
             },
